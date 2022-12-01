@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Catch</string>
+    <string name="continue_">Continue</string>
+    <string name="internet_connection">Please check your internet connection!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_user_type">Select User Type</string>
+    <string name="catcher">Catcher</string>
+    <string name="catchee">Catchee</string>
+    <string name="by_signing_up_to_our_app_you_agree_to_our">By signing up to our app, you agree to our</string>
+    <string name="terms_amp_conditions">Terms &amp; Conditions</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
 </resources>

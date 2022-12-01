@@ -1,12 +1,12 @@
-package com.hudhudit.catchapp.splash
+package com.hudhudit.catchapp.views.registration
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.hudhudit.catchapp.R
 
-class SplashActivity : AppCompatActivity() {
+class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.activity_registration)
     }
 }

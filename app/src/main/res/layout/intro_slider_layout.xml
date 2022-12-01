@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_40sdp">
+
+        <ImageView
+            android:id="@+id/slider_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:src="@color/red"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/slider_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/slider_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/slider_description"
+            android:fontFamily="@font/cairo_bold"
+            tools:text="Your Catch at Your Service"
+            android:gravity="center_horizontal"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/_15ssp"
+            android:layout_marginTop="@dimen/_40sdp"/>
+
+        <TextView
+            android:id="@+id/slider_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/cairo_regular"
+            android:text="Catch a drive anytime, anywhere with one simple click
+Our Catchers always there for you!"
+            android:gravity="center_horizontal"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/_12ssp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
