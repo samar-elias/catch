@@ -11,9 +11,9 @@ import com.bumptech.glide.Glide
 import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.apputils.modules.introduction.Intro
 
-class IntroAdapter(contents: ArrayList<Intro>, introductionActivity: IntroductionActivity) :
+class IntroAdapter(contents: MutableList<Intro>, introductionActivity: IntroductionActivity) :
     PagerAdapter() {
-    private val contents: ArrayList<Intro>
+    private val contents: MutableList<Intro>
     private val introductionActivity: IntroductionActivity
     override fun getCount(): Int {
         return contents.size

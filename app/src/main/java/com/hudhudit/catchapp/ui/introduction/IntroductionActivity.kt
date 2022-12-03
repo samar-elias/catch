@@ -1,20 +1,27 @@
 package com.hudhudit.catchapp.ui.introduction
 
 import android.content.Intent
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.hudhudit.catchapp.apputils.helpers.Helpers
 import com.hudhudit.catchapp.apputils.modules.introduction.Intro
+import com.hudhudit.catchapp.core.base.BaseActivity
 import com.hudhudit.catchapp.databinding.ActivityIntroductionBinding
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
+import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
 
 @AndroidEntryPoint
-class IntroductionActivity : AppCompatActivity() {
+class IntroductionActivity : BaseActivity() {
 
-    lateinit var binding: ActivityIntroductionBinding
-    var intros: ArrayList<Intro> = ArrayList()
+    private lateinit var binding: ActivityIntroductionBinding
+    private val viewModel by viewModels<IntroductionViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +29,7 @@ class IntroductionActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-//        getIntroData()
+        getIntroData()
         onClick()
     }
 
@@ -34,27 +41,23 @@ class IntroductionActivity : AppCompatActivity() {
         }
     }
 
-//    private fun getIntroData(){
-//        binding.progressBar.visibility = View.VISIBLE
-//        val retrofit: Retrofit = Retrofit.Builder().baseUrl(AppDefs.BaseUrl)
-//            .addConverterFactory(GsonConverterFactory.create()).build()
-//        val washerIntroCall: Call<IntroData> =
-//            retrofit.create(RetrofitApis::class.java).getIntro()
-//        washerIntroCall.enqueue(object : Callback<IntroData> {
-//            override fun onResponse(call: Call<IntroData>, response: Response<IntroData>) {
-//                binding.progressBar.visibility = View.GONE
-//                intros = response.body()!!.results
-//                initSlider()
-//            }
-//
-//            override fun onFailure(call: Call<IntroData>, t: Throwable) {
-//                Toast.makeText(this@IntroductionActivity, resources.getString(R.string.internet_connection), Toast.LENGTH_SHORT).show()
-//            }
-//
-//        })
-//    }
+    private fun getIntroData(){
+        binding.progressBar.visibility = View.VISIBLE
+        viewModel.getIntroData()
+        viewModel.introStatus.observe(this) {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+                    initSlider(it.data!!.results)
+                }
+                Resource.Status.ERROR -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
 
-    private fun initSlider() {
+    private fun initSlider(intros: MutableList<Intro>) {
         binding.viewPager.visibility = View.VISIBLE
         binding.tabDots.setupWithViewPager(binding.viewPager, true)
         val mAdapter =
