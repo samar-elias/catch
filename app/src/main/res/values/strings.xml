@@ -25,4 +25,10 @@
     <string name="taxi">Taxi</string>
     <string name="private_car">Private Car</string>
     <string name="enter_car_information">Enter Car Information</string>
+    <string name="country">Country</string>
+    <string name="plate_number">Plate Number</string>
+    <string name="car_brand">Car Brand</string>
+    <string name="car_model">Car Model</string>
+    <string name="scan_the_car_id_card">Scan the car ID card</string>
+    <string name="front">Front</string>
 </resources>
