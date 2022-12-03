@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".views.registration.usertypes.UserTypesFragment">
+    tools:context=".ui.registration.usertypes.UserTypesFragment">
 
     <View
         android:id="@+id/middle"
