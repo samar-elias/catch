@@ -11,4 +11,18 @@
     <string name="terms_amp_conditions">Terms &amp; Conditions</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
+    <string name="full_name">Full Name</string>
+    <string name="first_and_last_name">First and Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="next">Next</string>
+    <string name="welcome">Welcome!</string>
+    <string name="verify_phone_number">Verify Phone Number</string>
+    <string name="to_complete_creating_your_account_you_need_to_enter_the_verification_code_we_sent_to_your_phone_number">To complete creating your account, you need to enter the verification code we sent to your phone number</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="resend_code"><u>Resend Code</u></string>
+    <string name="done">Done</string>
+    <string name="select_car_type">Select Car Type</string>
+    <string name="taxi">Taxi</string>
+    <string name="private_car">Private Car</string>
+    <string name="enter_car_information">Enter Car Information</string>
 </resources>

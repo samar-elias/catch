@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".views.registration.catchee.CatcheeSignUpFragment">
+    tools:context=".views.registration.catcher.verification.CatcherVerificationFragment">
 
     <View
         android:id="@+id/middle"
@@ -55,6 +55,16 @@
             android:src="@drawable/white_catch_logo"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/_50sdp"/>
+
+        <ImageView
+            android:id="@+id/navigate_back"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/navigate_back"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
@@ -63,109 +73,103 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/term_conditions_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_30sdp"
-        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_3sdp">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="vertical"
             android:background="@color/white"
             android:gravity="center_horizontal">
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:orientation="horizontal"
+                android:text="@string/verify_phone_number"
+                android:textColorHint="@color/dark_gray"
+                android:fontFamily="@font/cairo_bold"
+                android:textSize="@dimen/_18ssp"
+                android:gravity="center_horizontal"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp">
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="@string/sign_up"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/_17ssp"
-                        android:fontFamily="@font/cairo_bold"/>
-                    <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/yellow_line"/>
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="@string/sign_in"
-                        android:textColor="@color/light_gray"
-                        android:textSize="@dimen/_17ssp"
-                        android:fontFamily="@font/cairo_bold"/>
-                    <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/yellow_line"
-                        android:visibility="invisible"/>
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                android:layout_marginEnd="@dimen/_10sdp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/to_complete_creating_your_account_you_need_to_enter_the_verification_code_we_sent_to_your_phone_number"
+                android:textColorHint="@color/dark_gray"
+                android:fontFamily="@font/cairo_regular"
+                android:textSize="@dimen/_10ssp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"/>
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
                 app:cardElevation="@dimen/_3sdp">
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@color/white"
-                    android:gravity="center_horizontal">
+                    android:padding="@dimen/_7sdp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/verification_code"
+                        android:fontFamily="@font/cairo_regular"
+                        android:textSize="@dimen/_8ssp"
+                        android:textColor="@color/dark_gray"/>
+                    <EditText
+                        android:id="@+id/verification_code_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/cairo_semibold"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="@dimen/_10ssp"
+                        android:hint="000000"
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/resend_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/resend_code"
+                android:fontFamily="@font/cairo_semibold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/done"
+                android:textAllCaps="false"
+                android:layout_gravity="center_horizontal"
+                app:cornerRadius="@dimen/_20sdp"
+                android:backgroundTint="@color/yellow"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/cairo_bold"
+                android:layout_margin="@dimen/_10sdp"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.card.MaterialCardView>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/term_conditions_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="horizontal"
-        android:layout_margin="@dimen/_15sdp"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/by_signing_up_to_our_app_you_agree_to_our"
-            android:textColor="@color/dark_gray"
-            android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/cairo_regular"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/terms_amp_conditions"
-            android:textColor="@color/yellow"
-            android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/cairo_bold"
-            android:layout_marginStart="@dimen/_5sdp"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
