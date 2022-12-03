@@ -66,6 +66,7 @@
             android:layout_marginTop="@dimen/_20sdp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/registration_CV"
         android:layout_width="match_parent"
