@@ -5,8 +5,6 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.hudhud.eva.core.validator.onBackPressedAction
 
 import com.hudhudit.catchapp.utils.Prefs
 
@@ -46,9 +44,7 @@ lateinit var prefs: Prefs
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
        // super.onViewCreated(view, savedInstanceState)
         super.onViewCreated(view, savedInstanceState)
-        onBackPressedAction {
-            findNavController().popBackStack()
-        }
+
 
     }
 
