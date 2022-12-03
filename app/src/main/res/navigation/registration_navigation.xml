@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registration_navigation"
+    app:startDestination="@id/userTypesFragment">
+
+    <fragment
+        android:id="@+id/userTypesFragment"
+        android:name="com.hudhudit.catchapp.ui.registration.usertypes.UserTypesFragment"
+        android:label="fragment_user_types"
+        tools:layout="@layout/fragment_user_types" />
+</navigation>

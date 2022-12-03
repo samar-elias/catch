@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "480042086318",
+    "project_id": "catch-c1017",
+    "storage_bucket": "catch-c1017.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480042086318:android:a2caa7ece05c4ffbf3223f",
+        "android_client_info": {
+          "package_name": "com.hudhudit.catchapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480042086318-dc598cq9b24kgm1d8e2j95q64eknradi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hudhudit.catchapp",
+            "certificate_hash": "b44278d43d4404365cbf69dea4bd83794b33ce04"
+          }
+        },
+        {
+          "client_id": "480042086318-66d09aa8dltcsr0i324cflmklgumggue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrlI_oGaWyCBgR_h82l8zGtqZwfPgt9eI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480042086318-66d09aa8dltcsr0i324cflmklgumggue.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
