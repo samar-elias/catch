@@ -79,7 +79,6 @@
         android:layout_marginBottom="@dimen/_30sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_3sdp">
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -298,7 +297,6 @@
                     android:layout_marginBottom="@dimen/_10sdp"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.core.widget.NestedScrollView>
-
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
