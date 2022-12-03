@@ -15,13 +15,13 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Catch">
         <activity
-            android:name="com.hudhudit.catchapp.views.introduction.IntroductionActivity"
+            android:name="com.hudhudit.catchapp.ui.introduction.IntroductionActivity"
             android:exported="false" />
         <activity
-            android:name="com.hudhudit.catchapp.views.registration.RegistrationActivity"
+            android:name="com.hudhudit.catchapp.ui.registration.RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name="com.hudhudit.catchapp.views.splash.SplashActivity"
+            android:name="com.hudhudit.catchapp.ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

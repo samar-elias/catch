@@ -1,6 +1,6 @@
 package com.hudhudit.catchapp.apputils.remote
 
-import com.hudhudit.catchapp.apputils.models.introduction.IntroData
+import com.hudhudit.catchapp.apputils.modules.introduction.IntroData
 import retrofit2.Call
 import retrofit2.http.GET
 

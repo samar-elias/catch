@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userTypesFragment"
-        android:name="com.hudhudit.catchapp.views.registration.usertypes.UserTypesFragment"
+        android:name="com.hudhudit.catchapp.ui.registration.usertypes.UserTypesFragment"
         android:label="fragment_user_types"
         tools:layout="@layout/fragment_user_types" />
 </navigation>

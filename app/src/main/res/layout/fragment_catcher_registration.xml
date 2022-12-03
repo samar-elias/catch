@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".views.registration.catcher.register.CatcherRegistrationFragment">
+    tools:context=".ui.registration.catcher.register.CatcherRegistrationFragment">
 
     <View
         android:id="@+id/middle"
