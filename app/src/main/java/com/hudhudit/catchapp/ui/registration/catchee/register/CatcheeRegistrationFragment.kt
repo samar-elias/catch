@@ -126,7 +126,7 @@ class CatcheeRegistrationFragment : BaseFragment() {
                     binding.progressBar.visibility = View.GONE
                     val catcheeUser = CatcheeUserPost(fullName, phoneNumber, "0", token)
                     AppConstants.catcheeSignUp = catcheeUser
-                    findNavController().navigate(CatcheeRegistrationFragmentDirections.actionCatcheeRegistrationFragmentToCatcheeVerificationFragment("signUp"))
+                    findNavController().navigate(CatcheeRegistrationFragmentDirections.actionCatcheeRegistrationFragmentToCatcheeVerificationFragment(type))
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE

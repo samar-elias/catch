@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class CatcheeUserPost(val name: String,
-                           val phone: String,
-                           val plan_id: String,
-                           val fcm_token: String): Parcelable
+data class CatcheeUserPost(var name: String,
+                           var phone: String,
+                           var plan_id: String,
+                           var fcm_token: String): Parcelable
