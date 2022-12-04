@@ -12,6 +12,7 @@
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/activity_registration.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/activity_splash.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/fragment_car_information.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/fragment_catchee_notifications.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/fragment_catchee_registration.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/fragment_catchee_sign_in.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/fragment_catchee_sign_up.xml" value="0.13333333333333333" />
@@ -21,6 +22,7 @@
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/fragment_catcher_verification.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/fragment_user_types.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/intro_slider_layout.xml" value="0.18385416666666668" />
+        <entry key="..\:/Users/hp/Documents/GitHub/catch/app/src/main/res/layout/notification_layout.xml" value="0.16666666666666666" />
       </map>
     </option>
   </component>
