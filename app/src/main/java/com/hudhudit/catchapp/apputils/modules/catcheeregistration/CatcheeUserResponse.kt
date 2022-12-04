@@ -1,4 +1,4 @@
-package com.hudhudit.catchapp.apputils.modules.catchee
+package com.hudhudit.catchapp.apputils.modules.catcheeregistration
 
 import com.hudhudit.catchapp.apputils.modules.Status
 

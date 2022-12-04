@@ -1,4 +1,4 @@
-package com.hudhudit.catchapp.apputils.modules.catchee
+package com.hudhudit.catchapp.apputils.modules.catcheeregistration
 
 data class CatcheeUser(val id: String,
                        val name: String,
