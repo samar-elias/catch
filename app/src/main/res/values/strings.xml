@@ -31,4 +31,13 @@
     <string name="car_model">Car Model</string>
     <string name="scan_the_car_id_card">Scan the car ID card</string>
     <string name="front">Front</string>
+    <string name="empty_full_name">Full name can\'t be empty!</string>
+    <string name="empty_phone_number">Phone number can\'t be empty!</string>
+    <string name="phone_existed">Phone number is already existed!</string>
+    <string name="notifications">Notifications</string>
+    <string name="go_to_payment">Go to Payment</string>
+    <string name="verification_completed">Verification completed!</string>
+    <string name="verification_failed">Verification not completed! Try again!</string>
+    <string name="code_sent">Code sent!</string>
+    <string name="phone_not_existed">Phone number is not existed!</string>
 </resources>

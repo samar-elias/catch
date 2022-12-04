@@ -5,9 +5,11 @@ import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.apputils.helpers.Helpers
 import com.hudhudit.catchapp.apputils.modules.introduction.Intro
 import com.hudhudit.catchapp.core.base.BaseActivity
@@ -51,7 +53,8 @@ class IntroductionActivity : BaseActivity() {
                     initSlider(it.data!!.results)
                 }
                 Resource.Status.ERROR -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
                 }
             }
         }

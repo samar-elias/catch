@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.databinding.FragmentUserTypesBinding
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +50,13 @@ class UserTypesFragment : Fragment() {
             binding.catcherSelectedLayout.visibility = View.GONE
             binding.catcheeSelectedLayout.visibility = View.VISIBLE
             userType = "1"
+        }
+        binding.continueBtn.setOnClickListener {
+            if (userType == "1"){
+                findNavController().navigate(R.id.action_userTypesFragment_to_catcheeRegistrationFragment)
+            }else if (userType == "0"){
+                findNavController().navigate(R.id.action_userTypesFragment_to_catcherRegistrationFragment)
+            }
         }
     }
 
