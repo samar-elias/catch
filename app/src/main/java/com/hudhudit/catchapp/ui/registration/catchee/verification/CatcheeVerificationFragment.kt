@@ -3,36 +3,24 @@ package com.hudhudit.catchapp.ui.registration.catchee.verification
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.messaging.FirebaseMessaging
 import com.hudhudit.catchapp.R
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserPost
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CheckPhone
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcheeVerificationBinding
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
-import com.hudhudit.catchapp.ui.registration.catchee.register.CatcheeRegistrationFragmentDirections
 import com.hudhudit.catchapp.utils.AppConstants
 import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -78,6 +66,8 @@ class CatcheeVerificationFragment : BaseFragment() {
         type = args.type
         if (type == "signUp"){
             phoneNum = AppConstants.catcheeSignUp.phone
+        }else if (type == "signIn"){
+            phoneNum = AppConstants.catcheeSignIn.phone
         }
         mAuth = FirebaseAuth.getInstance()
         mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -143,6 +133,8 @@ class CatcheeVerificationFragment : BaseFragment() {
                 Toast.makeText(context, resources.getString(R.string.verification_completed), Toast.LENGTH_SHORT).show()
                 if (type == "signUp"){
                     createAccount()
+                }else if (type == "signIn"){
+                    signIn()
                 }
             } else {
                 if (task.exception is FirebaseAuthInvalidCredentialsException) {
@@ -180,4 +172,21 @@ class CatcheeVerificationFragment : BaseFragment() {
         }
     }
 
+    private fun signIn(){
+        binding.progressBar.visibility = View.VISIBLE
+        AppConstants.catcheeSignIn.fcm_token = token
+        viewModel.signIn(AppConstants.catcheeSignIn)
+        viewModel.signInStatus.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(registrationActivity, "Signed in user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
+                }
+                Resource.Status.ERROR -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(registrationActivity, "Signed in failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 }

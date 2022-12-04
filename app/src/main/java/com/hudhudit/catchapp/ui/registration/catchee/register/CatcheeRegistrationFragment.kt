@@ -12,11 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.hudhudit.catchapp.R
-import com.hudhudit.catchapp.apputils.modules.BooleanResponse
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserPost
+import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignIn
+import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignUp
 import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CheckPhone
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcheeRegistrationBinding
@@ -31,6 +29,7 @@ class CatcheeRegistrationFragment : BaseFragment() {
     private lateinit var binding: FragmentCatcheeRegistrationBinding
     private lateinit var registrationActivity: RegistrationActivity
     private val viewModel by viewModels<CatcheeRegistrationViewModel>()
+    var fullName = ""
     var type = "signUp"
     var token = ""
 
@@ -96,7 +95,7 @@ class CatcheeRegistrationFragment : BaseFragment() {
 
     private fun checkValidation(){
         if(type == "signUp"){
-            val fullName = binding.fullNameEdt.text.toString()
+            fullName = binding.fullNameEdt.text.toString()
             val phoneNumber = binding.phoneEdt.text.toString()
             when {
                 fullName.isEmpty() -> {
@@ -110,13 +109,27 @@ class CatcheeRegistrationFragment : BaseFragment() {
                 }
                 else -> {
                     val fullPhoneNumber = binding.phoneCcp.selectedCountryCodeWithPlus+phoneNumber
-                    checkPhone(fullName, fullPhoneNumber, token)
+                    checkPhone(fullPhoneNumber)
+                }
+            }
+        }else if (type == "signIn"){
+            val phoneNumber = binding.signInPhoneEdt.text.toString()
+            when {
+                phoneNumber.isEmpty() -> {
+                    binding.signInPhoneEdt.error = resources.getString(R.string.empty_phone_number)
+                }
+                phoneNumber.startsWith("0") -> {
+                    phoneNumber.substring(1)
+                }
+                else -> {
+                    val fullPhoneNumber = binding.signInPhoneCcp.selectedCountryCodeWithPlus+phoneNumber
+                    checkPhone(fullPhoneNumber)
                 }
             }
         }
     }
 
-    private fun checkPhone(fullName: String, phoneNumber: String, token: String){
+    private fun checkPhone(phoneNumber: String){
         binding.progressBar.visibility = View.VISIBLE
         val fullPhone = CheckPhone(phoneNumber)
         viewModel.checkPhone(fullPhone)
@@ -124,13 +137,23 @@ class CatcheeRegistrationFragment : BaseFragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    val catcheeUser = CatcheeUserPost(fullName, phoneNumber, "0", token)
-                    AppConstants.catcheeSignUp = catcheeUser
-                    findNavController().navigate(CatcheeRegistrationFragmentDirections.actionCatcheeRegistrationFragmentToCatcheeVerificationFragment(type))
+                    if (type == "signUp"){
+                        val catcheeUser = CatcheeUserSignUp(fullName, phoneNumber, "0", token)
+                        AppConstants.catcheeSignUp = catcheeUser
+                        findNavController().navigate(CatcheeRegistrationFragmentDirections.actionCatcheeRegistrationFragmentToCatcheeVerificationFragment2(type))
+                    }else if (type == "signIn"){
+                        Toast.makeText(registrationActivity, resources.getString(R.string.phone_not_existed), Toast.LENGTH_SHORT).show()
+                    }
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, resources.getString(R.string.phone_existed), Toast.LENGTH_SHORT).show()
+                    if (type == "signUp"){
+                        Toast.makeText(registrationActivity, resources.getString(R.string.phone_existed), Toast.LENGTH_SHORT).show()
+                    }else if (type == "signIn"){
+                        val catcheeUser = CatcheeUserSignIn(phoneNumber, token)
+                        AppConstants.catcheeSignIn = catcheeUser
+                        findNavController().navigate(CatcheeRegistrationFragmentDirections.actionCatcheeRegistrationFragmentToCatcheeVerificationFragment2(type))
+                    }
                 }
             }
         }
