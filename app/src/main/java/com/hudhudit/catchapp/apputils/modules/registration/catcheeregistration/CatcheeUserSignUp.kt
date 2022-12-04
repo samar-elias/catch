@@ -1,4 +1,4 @@
-package com.hudhudit.catchapp.apputils.modules.catcheeregistration
+package com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -54,6 +54,8 @@ class UserTypesFragment : Fragment() {
         binding.continueBtn.setOnClickListener {
             if (userType == "1"){
                 findNavController().navigate(R.id.action_userTypesFragment_to_catcheeRegistrationFragment)
+            }else if (userType == "0"){
+                findNavController().navigate(R.id.action_userTypesFragment_to_catcherRegistrationFragment)
             }
         }
     }

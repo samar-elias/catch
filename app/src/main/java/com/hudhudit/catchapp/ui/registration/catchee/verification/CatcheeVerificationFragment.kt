@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
@@ -67,7 +68,7 @@ class CatcheeVerificationFragment : BaseFragment() {
         if (type == "signUp"){
             phoneNum = AppConstants.catcheeSignUp.phone
         }else if (type == "signIn"){
-            phoneNum = AppConstants.catcheeSignIn.phone
+            phoneNum = AppConstants.signIn.phone
         }
         mAuth = FirebaseAuth.getInstance()
         mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -92,6 +93,7 @@ class CatcheeVerificationFragment : BaseFragment() {
     }
 
     private fun onClick(){
+        binding.navigateBack.setOnClickListener { findNavController().popBackStack() }
         binding.resendCode.setOnClickListener {
             Toast.makeText(registrationActivity, resources.getString(R.string.code_sent), Toast.LENGTH_SHORT).show()
             sendVerificationCodeToUser(phoneNum)
@@ -174,8 +176,8 @@ class CatcheeVerificationFragment : BaseFragment() {
 
     private fun signIn(){
         binding.progressBar.visibility = View.VISIBLE
-        AppConstants.catcheeSignIn.fcm_token = token
-        viewModel.signIn(AppConstants.catcheeSignIn)
+        AppConstants.signIn.fcm_token = token
+        viewModel.signIn(AppConstants.signIn)
         viewModel.signInStatus.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.SUCCESS -> {

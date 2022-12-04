@@ -1,7 +1,8 @@
 package com.hudhudit.catchapp.utils
 
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignIn
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignUp
+import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
+import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
+import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserSignUp
 
 class AppConstants {
 
@@ -11,6 +12,7 @@ class AppConstants {
         const val BaseUrl = "http://driver.hudhudclient.com/Api/"
 
         lateinit var catcheeSignUp: CatcheeUserSignUp
-        lateinit var catcheeSignIn: CatcheeUserSignIn
+        lateinit var catcherSignUp: CatcherUserSignUp
+        lateinit var signIn: UserSignIn
     }
 }
