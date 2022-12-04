@@ -1,7 +1,8 @@
-package com.hudhudit.catchapp
+package com.hudhudit.catchapp.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.hudhudit.catchapp.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
