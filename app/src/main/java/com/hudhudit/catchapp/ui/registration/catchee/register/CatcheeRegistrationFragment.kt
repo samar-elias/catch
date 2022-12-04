@@ -13,9 +13,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import com.hudhudit.catchapp.R
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignIn
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignUp
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CheckPhone
+import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
+import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
+import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcheeRegistrationBinding
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
@@ -65,6 +65,8 @@ class CatcheeRegistrationFragment : BaseFragment() {
             binding.signUpLine.visibility = View.VISIBLE
             binding.signIn.setTextColor(resources.getColor(R.color.light_gray))
             binding.signInLine.visibility = View.INVISIBLE
+            binding.nextBtn.text = resources.getString(R.string.sign_up)
+            binding.termConditionsLayout.visibility = View.VISIBLE
         }
         binding.signInBtn.setOnClickListener {
             type = "signIn"
@@ -74,6 +76,8 @@ class CatcheeRegistrationFragment : BaseFragment() {
             binding.signInLine.visibility = View.VISIBLE
             binding.signUp.setTextColor(resources.getColor(R.color.light_gray))
             binding.signUpLine.visibility = View.INVISIBLE
+            binding.nextBtn.text = resources.getString(R.string.sign_in)
+            binding.termConditionsLayout.visibility = View.GONE
         }
         binding.nextBtn.setOnClickListener { checkValidation() }
     }
@@ -150,8 +154,8 @@ class CatcheeRegistrationFragment : BaseFragment() {
                     if (type == "signUp"){
                         Toast.makeText(registrationActivity, resources.getString(R.string.phone_existed), Toast.LENGTH_SHORT).show()
                     }else if (type == "signIn"){
-                        val catcheeUser = CatcheeUserSignIn(phoneNumber, token)
-                        AppConstants.catcheeSignIn = catcheeUser
+                        val catcheeUser = UserSignIn(phoneNumber, token)
+                        AppConstants.signIn = catcheeUser
                         findNavController().navigate(CatcheeRegistrationFragmentDirections.actionCatcheeRegistrationFragmentToCatcheeVerificationFragment2(type))
                     }
                 }

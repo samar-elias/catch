@@ -1,4 +1,4 @@
-package com.hudhudit.catchapp.ui.registration.catchee.register
+package com.hudhudit.catchapp.ui.registration.catcher.register
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,13 +12,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CatcheeRegistrationViewModel @Inject constructor(val registrationDataSource: RegistrationDataSource): ViewModel() {
+class CatcherRegistrationViewModel @Inject constructor(val registrationDataSource: RegistrationDataSource): ViewModel() {
 
     val checkPhoneStatus = MutableLiveData<Resource<BooleanResponse>>()
 
     fun checkPhone(checkPhone: CheckPhone){
         viewModelScope.launch {
-            val response = registrationDataSource.checkCatcheePhone(checkPhone)
+            val response = registrationDataSource.checkCatcherPhone(checkPhone)
             checkPhoneStatus.postValue(response)
         }
     }

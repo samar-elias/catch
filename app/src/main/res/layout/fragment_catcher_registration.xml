@@ -91,12 +91,14 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp">
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/sign_up_btn"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center_horizontal">
                         <TextView
+                            android:id="@+id/sign_up"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
@@ -105,17 +107,20 @@
                             android:textSize="@dimen/_17ssp"
                             android:fontFamily="@font/cairo_bold"/>
                         <ImageView
+                            android:id="@+id/sign_up_line"
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="wrap_content"
                             android:src="@drawable/yellow_line"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@id/sign_in_btn"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center_horizontal">
                         <TextView
+                            android:id="@+id/sign_in"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
@@ -124,6 +129,7 @@
                             android:textSize="@dimen/_17ssp"
                             android:fontFamily="@font/cairo_bold"/>
                         <ImageView
+                            android:id="@+id/sign_in_line"
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="wrap_content"
                             android:src="@drawable/yellow_line"
@@ -358,16 +364,27 @@
             android:layout_height="wrap_content"
             android:text="@string/by_signing_up_to_our_app_you_agree_to_our"
             android:textColor="@color/dark_gray"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_8ssp"
             android:fontFamily="@font/cairo_regular"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/terms_amp_conditions"
             android:textColor="@color/yellow"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_8ssp"
             android:fontFamily="@font/cairo_bold"
             android:layout_marginStart="@dimen/_5sdp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

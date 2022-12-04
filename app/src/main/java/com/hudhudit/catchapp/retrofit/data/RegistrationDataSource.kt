@@ -1,8 +1,8 @@
 package com.hudhudit.catchapp.retrofit.data
 
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignIn
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserSignUp
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CheckPhone
+import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
+import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
+import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.retrofit.services.NetworkService
 import javax.inject.Inject
 
@@ -14,15 +14,23 @@ class RegistrationDataSource @Inject constructor(
         networkService.getIntro()
     }
 
-    suspend fun checkPhone(checkPhone: CheckPhone) = getResult{
-        networkService.checkPhone(checkPhone)
+    suspend fun checkCatcheePhone(checkPhone: CheckPhone) = getResult{
+        networkService.checkCatcheePhone(checkPhone)
     }
 
     suspend fun catcheeCreateAccount(catcheeUserSignUp: CatcheeUserSignUp) = getResult{
         networkService.catcheeCreateAccount(catcheeUserSignUp)
     }
 
-    suspend fun catcheeLogin(catcheeUserSignIn: CatcheeUserSignIn) = getResult{
+    suspend fun catcheeLogin(catcheeUserSignIn: UserSignIn) = getResult{
         networkService.catcheeSignIn(catcheeUserSignIn)
+    }
+
+    suspend fun checkCatcherPhone(checkPhone: CheckPhone) = getResult{
+        networkService.checkCatcherPhone(checkPhone)
+    }
+
+    suspend fun catcherLogin(catcherUserSignIn: UserSignIn) = getResult{
+        networkService.catcherSignIn(catcherUserSignIn)
     }
 }

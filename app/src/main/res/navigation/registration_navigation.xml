@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_userTypesFragment_to_catcheeRegistrationFragment"
             app:destination="@id/catcheeRegistrationFragment" />
+        <action
+            android:id="@+id/action_userTypesFragment_to_catcherRegistrationFragment"
+            app:destination="@id/catcherRegistrationFragment" />
     </fragment>
     <fragment
         android:id="@+id/catcheeRegistrationFragment"
@@ -31,6 +34,24 @@
         android:name="com.hudhudit.catchapp.ui.registration.catchee.verification.CatcheeVerificationFragment"
         android:label="fragment_catchee_verification"
         tools:layout="@layout/fragment_catchee_verification" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/catcherRegistrationFragment"
+        android:name="com.hudhudit.catchapp.ui.registration.catcher.register.CatcherRegistrationFragment"
+        android:label="fragment_catcher_registration"
+        tools:layout="@layout/fragment_catcher_registration" >
+        <action
+            android:id="@+id/action_catcherRegistrationFragment_to_catcherVerificationFragment"
+            app:destination="@id/catcherVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catcherVerificationFragment"
+        android:name="com.hudhudit.catchapp.ui.registration.catcher.verification.CatcherVerificationFragment"
+        android:label="fragment_catcher_verification"
+        tools:layout="@layout/fragment_catcher_verification" >
         <argument
             android:name="type"
             app:argType="string" />
