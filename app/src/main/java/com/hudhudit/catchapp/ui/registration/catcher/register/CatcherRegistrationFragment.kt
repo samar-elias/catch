@@ -152,8 +152,8 @@ class CatcherRegistrationFragment : BaseFragment() {
                     if (type == "signUp"){
                         Toast.makeText(registrationActivity, resources.getString(R.string.phone_existed), Toast.LENGTH_SHORT).show()
                     }else if (type == "signIn"){
-                        val catcheeUser = UserSignIn(phoneNumber, token)
-                        AppConstants.signIn = catcheeUser
+                        val catcherUser = UserSignIn(phoneNumber, token)
+                        AppConstants.signIn = catcherUser
                         findNavController().navigate(CatcherRegistrationFragmentDirections.actionCatcherRegistrationFragmentToCatcherVerificationFragment(type))
                     }
                 }
