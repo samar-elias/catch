@@ -39,4 +39,5 @@
     <string name="verification_completed">Verification completed!</string>
     <string name="verification_failed">Verification not completed! Try again!</string>
     <string name="code_sent">Code sent!</string>
+    <string name="phone_not_existed">Phone number is not existed!</string>
 </resources>

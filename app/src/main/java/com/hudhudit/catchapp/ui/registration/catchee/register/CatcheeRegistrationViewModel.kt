@@ -4,8 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hudhudit.catchapp.apputils.modules.BooleanResponse
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserPost
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserResponse
 import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CheckPhone
 import com.hudhudit.catchapp.retrofit.data.RegistrationDataSource
 import com.hudhudit.catchapp.utils.Resource
