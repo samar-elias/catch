@@ -1,12 +1,10 @@
-package com.hudhudit.catchapp.ui.registration.catchee.register
+package com.hudhudit.catchapp.ui.registration.catchee.verification
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hudhudit.catchapp.apputils.modules.BooleanResponse
 import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserPost
 import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CatcheeUserResponse
-import com.hudhudit.catchapp.apputils.modules.catcheeregistration.CheckPhone
 import com.hudhudit.catchapp.retrofit.data.RegistrationDataSource
 import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,14 +12,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CatcheeRegistrationViewModel @Inject constructor(val registrationDataSource: RegistrationDataSource): ViewModel() {
+class CatcheeVerificationViewModel @Inject constructor(val registrationDataSource: RegistrationDataSource): ViewModel(){
 
-    val checkPhoneStatus = MutableLiveData<Resource<BooleanResponse>>()
+    val createAccountStatus = MutableLiveData<Resource<CatcheeUserResponse>>()
 
-    fun checkPhone(checkPhone: CheckPhone){
+    fun createAccount(catcheeUserPost: CatcheeUserPost){
         viewModelScope.launch {
-            val response = registrationDataSource.checkPhone(checkPhone)
-            checkPhoneStatus.postValue(response)
+            val response = registrationDataSource.catcheeCreateAccount(catcheeUserPost)
+            createAccountStatus.postValue(response)
         }
     }
 }

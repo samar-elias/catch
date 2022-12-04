@@ -17,5 +17,5 @@ interface NetworkService {
     suspend fun checkPhone(@Body checkPhone: CheckPhone): Response<BooleanResponse>
 
     @POST("create_client_account")
-    suspend fun catcheeCreateAccount(catcheeUserPost: CatcheeUserPost): Response<CatcheeUserResponse>
+    suspend fun catcheeCreateAccount(@Body catcheeUserPost: CatcheeUserPost): Response<CatcheeUserResponse>
 }
