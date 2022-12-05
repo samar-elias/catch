@@ -1,6 +1,7 @@
 package com.hudhudit.catchapp.ui.registration.catcher.register
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,7 +18,9 @@ import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserSignUp
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcherRegistrationBinding
+import com.hudhudit.catchapp.ui.main.MainActivity
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
+import com.hudhudit.catchapp.ui.splash.SplashActivity
 import com.hudhudit.catchapp.utils.AppConstants
 import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -144,7 +147,8 @@ class CatcherRegistrationFragment : BaseFragment() {
                         AppConstants.catcherSignUp = catcherUser
                         findNavController().navigate(CatcherRegistrationFragmentDirections.actionCatcherRegistrationFragmentToCatcherVerificationFragment(type))
                     }else if (type == "signIn"){
-                        Toast.makeText(registrationActivity, resources.getString(R.string.phone_not_existed), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(registrationActivity, it.data!!.status.massage, Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(requireContext(),MainActivity::class.java))
                     }
                 }
                 Resource.Status.ERROR -> {
