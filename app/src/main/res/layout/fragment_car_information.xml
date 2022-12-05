@@ -82,7 +82,9 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,19 +151,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@color/white"
-                        android:padding="@dimen/_7sdp">
+                        android:background="@color/white">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/car_brand"
                             android:fontFamily="@font/cairo_regular"
                             android:textSize="@dimen/_8ssp"
-                            android:textColor="@color/dark_gray"/>
+                            android:textColor="@color/dark_gray"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:layout_marginStart="@dimen/_7sdp"
+                            android:layout_marginEnd="@dimen/_7sdp"/>
                         <Spinner
+                            android:id="@+id/car_brand_spinner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"/>
+                            android:layout_height="wrap_content"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -176,19 +180,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@color/white"
-                        android:padding="@dimen/_7sdp">
+                        android:background="@color/white">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/car_model"
                             android:fontFamily="@font/cairo_regular"
                             android:textSize="@dimen/_8ssp"
-                            android:textColor="@color/dark_gray"/>
+                            android:textColor="@color/dark_gray"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:layout_marginStart="@dimen/_7sdp"
+                            android:layout_marginEnd="@dimen/_7sdp"/>
                         <Spinner
+                            android:id="@+id/car_model_spinner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"/>
+                            android:layout_height="wrap_content"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </com.google.android.material.card.MaterialCardView>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -205,6 +211,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/front_car_id_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -250,6 +257,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/back_car_id_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -273,7 +281,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/front"
+                            android:text="@string/back"
                             android:fontFamily="@font/cairo_regular"
                             android:textColor="@color/dark_gray"
                             android:textSize="@dimen/_7ssp"/>
@@ -300,5 +308,16 @@
         </androidx.core.widget.NestedScrollView>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

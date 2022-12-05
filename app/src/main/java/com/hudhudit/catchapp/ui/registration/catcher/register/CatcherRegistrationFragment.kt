@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
 import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
+import com.hudhudit.catchapp.apputils.modules.registration.Country
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserSignUp
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcherRegistrationBinding
@@ -31,7 +34,9 @@ class CatcherRegistrationFragment : BaseFragment() {
     private lateinit var binding: FragmentCatcherRegistrationBinding
     private lateinit var registrationActivity: RegistrationActivity
     private val viewModel by viewModels<CatcherRegistrationViewModel>()
+    private lateinit var countries: MutableList<Country>
     var fullName = ""
+    var countryId = ""
     var type = "signUp"
     var token = ""
 
@@ -48,6 +53,7 @@ class CatcherRegistrationFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         getToken()
         onClick()
+        getCountries()
     }
 
     override fun onAttach(context: Context) {
@@ -81,6 +87,41 @@ class CatcherRegistrationFragment : BaseFragment() {
             binding.termConditionsLayout.visibility = View.GONE
         }
         binding.nextBtn.setOnClickListener { checkValidation() }
+        binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
+                countryId = countries[i].id
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+        }
+    }
+
+    private fun getCountries(){
+        binding.progressBar.visibility = View.VISIBLE
+        viewModel.getCountries()
+        viewModel.countriesStatus.observe(viewLifecycleOwner){
+            when (it.status){
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+                    countries = it.data!!.results
+                    setSpinner(it.data!!.results)
+                }
+                Resource.Status.ERROR -> {
+                    binding.progressBar.visibility = View.GONE
+                    //Toast.makeText(registrationActivity, "error", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun setSpinner(countries: MutableList<Country>){
+        val countryTitles: ArrayList<String> = ArrayList()
+        for (country in countries){
+            countryTitles.add(country.title)
+        }
+        val sortAdapter: ArrayAdapter<*> = ArrayAdapter(registrationActivity, R.layout.spinner_item, countryTitles)
+        sortAdapter.setDropDownViewResource(R.layout.spinner_item)
+        binding.countriesSpinner.adapter = sortAdapter
     }
 
     private fun getToken() {
@@ -111,6 +152,8 @@ class CatcherRegistrationFragment : BaseFragment() {
                 }
                 phoneNumber.startsWith("0") -> {
                     phoneNumber.substring(1)
+                    val fullPhoneNumber = binding.phoneCcp.selectedCountryCodeWithPlus+phoneNumber
+                    checkPhone(fullPhoneNumber)
                 }
                 else -> {
                     val fullPhoneNumber = binding.phoneCcp.selectedCountryCodeWithPlus+phoneNumber
@@ -143,8 +186,10 @@ class CatcherRegistrationFragment : BaseFragment() {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
                     if (type == "signUp"){
-                        val catcherUser = CatcherUserSignUp(fullName, phoneNumber)
+                        val catcherUser = CatcherUserSignUp(fullName, phoneNumber, countryId)
+                        Log.d("countryId", countryId)
                         AppConstants.catcherSignUp = catcherUser
+//                        AppConstants.catcherSignUp.country_id = countryId
                         findNavController().navigate(CatcherRegistrationFragmentDirections.actionCatcherRegistrationFragmentToCatcherVerificationFragment(type))
                     }else if (type == "signIn"){
                         Toast.makeText(registrationActivity, it.data!!.status.massage, Toast.LENGTH_SHORT).show()
@@ -156,8 +201,8 @@ class CatcherRegistrationFragment : BaseFragment() {
                     if (type == "signUp"){
                         Toast.makeText(registrationActivity, resources.getString(R.string.phone_existed), Toast.LENGTH_SHORT).show()
                     }else if (type == "signIn"){
-                        val catcheeUser = UserSignIn(phoneNumber, token)
-                        AppConstants.signIn = catcheeUser
+                        val catcherUser = UserSignIn(phoneNumber, token)
+                        AppConstants.signIn = catcherUser
                         findNavController().navigate(CatcherRegistrationFragmentDirections.actionCatcherRegistrationFragmentToCatcherVerificationFragment(type))
                     }
                 }

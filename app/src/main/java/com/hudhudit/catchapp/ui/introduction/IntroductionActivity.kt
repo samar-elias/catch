@@ -54,7 +54,7 @@ class IntroductionActivity : BaseActivity() {
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
                 }
             }
         }
