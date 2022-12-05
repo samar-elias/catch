@@ -41,10 +41,10 @@ interface NetworkService {
     suspend fun getCarTypes(@Body countryId: CountryId): Response<CarTypes>
 
     @GET("get_car_brand")
-    suspend fun getCarBrands(@Header("Lang") lang: String): Response<CarBrands>
+    suspend fun getCarBrands(): Response<CarBrands>
 
     @GET("get_car_model/{id}")
-    suspend fun getCarModels(@Header("Lang") lang: String, @Path(value= "id", encoded=false) id: String): Response<CarModels>
+    suspend fun getCarModels(@Path(value= "id", encoded=false) id: String): Response<CarModels>
 
     @POST("create_driver_account")
     suspend fun catcherCreateAccount(@Body catcherUserSignUp: CatcherUserSignUp): Response<CatcherUserResponse>

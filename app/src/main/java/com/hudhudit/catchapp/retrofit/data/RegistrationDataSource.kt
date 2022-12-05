@@ -45,12 +45,12 @@ class RegistrationDataSource @Inject constructor(
         networkService.getCarTypes(countryId)
     }
 
-    suspend fun getCarBrands(lang: String) = getResult{
-        networkService.getCarBrands(lang)
+    suspend fun getCarBrands() = getResult{
+        networkService.getCarBrands()
     }
 
-    suspend fun getCarModels(lang: String, id: String) = getResult{
-        networkService.getCarModels(lang, id)
+    suspend fun getCarModels(id: String) = getResult{
+        networkService.getCarModels(id)
     }
 
     suspend fun catcherCreateAccount(catcherUserSignUp: CatcherUserSignUp) = getResult{
