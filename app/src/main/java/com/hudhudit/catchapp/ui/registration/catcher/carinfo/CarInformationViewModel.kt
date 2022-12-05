@@ -17,16 +17,16 @@ class CarInformationViewModel @Inject constructor(val registrationDataSource: Re
     val carModelsStatus = MutableLiveData<Resource<CarModels>>()
     val createAccountStatus = MutableLiveData<Resource<CatcherUserResponse>>()
 
-    fun getCarBrands(lang: String){
+    fun getCarBrands(){
         viewModelScope.launch {
-            val response = registrationDataSource.getCarBrands(lang)
+            val response = registrationDataSource.getCarBrands()
             carBrandsStatus.postValue(response)
         }
     }
 
-    fun getCarModels(lang: String, id: String){
+    fun getCarModels(id: String){
         viewModelScope.launch {
-            val response = registrationDataSource.getCarModels(lang, id)
+            val response = registrationDataSource.getCarModels(id)
             carModelsStatus.postValue(response)
         }
     }

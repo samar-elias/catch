@@ -146,7 +146,7 @@ class CarInformationFragment : BaseFragment() {
 
     private fun getCarBrands(){
         binding.progressBar.visibility = View.VISIBLE
-        viewModel.getCarBrands("en")
+        viewModel.getCarBrands()
         viewModel.carBrandsStatus.observe(viewLifecycleOwner){
             when (it.status){
                 Resource.Status.SUCCESS -> {
@@ -168,7 +168,7 @@ class CarInformationFragment : BaseFragment() {
 
     private fun getCarModels(carBrandId: String){
         binding.progressBar.visibility = View.VISIBLE
-        viewModel.getCarModels("en", carBrandId)
+        viewModel.getCarModels(carBrandId)
         viewModel.carModelsStatus.observe(viewLifecycleOwner){
             when (it.status){
                 Resource.Status.SUCCESS -> {
