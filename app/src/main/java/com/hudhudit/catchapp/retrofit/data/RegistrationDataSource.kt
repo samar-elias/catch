@@ -14,6 +14,11 @@ class RegistrationDataSource @Inject constructor(
         networkService.getIntro()
     }
 
+
+    suspend fun getCountries() = getResult{
+        networkService.getCountries()
+    }
+
     suspend fun checkCatcheePhone(checkPhone: CheckPhone) = getResult{
         networkService.checkCatcheePhone(checkPhone)
     }
