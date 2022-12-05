@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -83,6 +84,13 @@ class CatcherRegistrationFragment : BaseFragment() {
             binding.termConditionsLayout.visibility = View.GONE
         }
         binding.nextBtn.setOnClickListener { checkValidation() }
+        binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
+                countryId = countries[i].id
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+        }
     }
 
     private fun getCountries(){
@@ -97,7 +105,7 @@ class CatcherRegistrationFragment : BaseFragment() {
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "error", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(registrationActivity, "error", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -141,6 +149,8 @@ class CatcherRegistrationFragment : BaseFragment() {
                 }
                 phoneNumber.startsWith("0") -> {
                     phoneNumber.substring(1)
+                    val fullPhoneNumber = binding.phoneCcp.selectedCountryCodeWithPlus+phoneNumber
+                    checkPhone(fullPhoneNumber)
                 }
                 else -> {
                     val fullPhoneNumber = binding.phoneCcp.selectedCountryCodeWithPlus+phoneNumber
@@ -173,9 +183,10 @@ class CatcherRegistrationFragment : BaseFragment() {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
                     if (type == "signUp"){
-                        val catcherUser = CatcherUserSignUp(fullName, phoneNumber)
+                        val catcherUser = CatcherUserSignUp(fullName, phoneNumber, countryId)
+                        Log.d("countryId", countryId)
                         AppConstants.catcherSignUp = catcherUser
-                        AppConstants.catcherSignUp.country_id = countryId
+//                        AppConstants.catcherSignUp.country_id = countryId
                         findNavController().navigate(CatcherRegistrationFragmentDirections.actionCatcherRegistrationFragmentToCatcherVerificationFragment(type))
                     }else if (type == "signIn"){
                         Toast.makeText(registrationActivity, resources.getString(R.string.phone_not_existed), Toast.LENGTH_SHORT).show()

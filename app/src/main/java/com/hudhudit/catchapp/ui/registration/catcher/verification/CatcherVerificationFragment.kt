@@ -17,6 +17,7 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.messaging.FirebaseMessaging
 import com.hudhudit.catchapp.R
+import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcherVerificationBinding
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
 import com.hudhudit.catchapp.utils.AppConstants
@@ -25,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class CatcherVerificationFragment : Fragment() {
+class CatcherVerificationFragment : BaseFragment() {
 
     lateinit var binding: FragmentCatcherVerificationBinding
     private lateinit var registrationActivity: RegistrationActivity
@@ -134,7 +135,7 @@ class CatcherVerificationFragment : Fragment() {
             if (task.isSuccessful) {
                 Toast.makeText(context, resources.getString(R.string.verification_completed), Toast.LENGTH_SHORT).show()
                 if (type == "signUp"){
-//                    createAccount()
+                    findNavController().navigate(R.id.action_catcherVerificationFragment_to_catcherCarTypeFragment)
                 }else if (type == "signIn"){
                     signIn()
                 }

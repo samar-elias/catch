@@ -55,5 +55,25 @@
         <argument
             android:name="type"
             app:argType="string" />
+        <action
+            android:id="@+id/action_catcherVerificationFragment_to_catcherCarTypeFragment"
+            app:destination="@id/catcherCarTypeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/catcherCarTypeFragment"
+        android:name="com.hudhudit.catchapp.ui.registration.catcher.cartype.CatcherCarTypeFragment"
+        android:label="fragment_catcher_car_type"
+        tools:layout="@layout/fragment_catcher_car_type" >
+        <action
+            android:id="@+id/action_catcherCarTypeFragment_to_carInformationFragment"
+            app:destination="@id/carInformationFragment" />
+        <action
+            android:id="@+id/action_catcherCarTypeFragment_to_carInformationFragment2"
+            app:destination="@id/carInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carInformationFragment"
+        android:name="com.hudhudit.catchapp.ui.registration.catcher.carinfo.CarInformationFragment"
+        android:label="fragment_car_information"
+        tools:layout="@layout/fragment_car_information" />
 </navigation>

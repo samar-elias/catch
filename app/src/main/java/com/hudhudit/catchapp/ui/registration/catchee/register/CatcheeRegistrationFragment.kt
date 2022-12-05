@@ -107,7 +107,7 @@ class CatcheeRegistrationFragment : BaseFragment() {
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "error", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(registrationActivity, "error", Toast.LENGTH_SHORT).show()
                 }
             }
         }

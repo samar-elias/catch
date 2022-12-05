@@ -7,7 +7,9 @@ import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
 import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.introduction.IntroData
 import com.hudhudit.catchapp.apputils.modules.registration.Countries
+import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarTypes
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserResponse
+import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CountryId
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -35,4 +37,8 @@ interface NetworkService {
 
     @POST("driver_login")
     suspend fun catcherSignIn(@Body catcherUserSignIn: UserSignIn): Response<CatcherUserResponse>
+
+    @POST("get_car_type")
+    suspend fun getCarTypes(@Body countryId: CountryId): Response<CarTypes>
+
 }
