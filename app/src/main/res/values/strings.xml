@@ -40,4 +40,14 @@
     <string name="verification_failed">Verification not completed! Try again!</string>
     <string name="code_sent">Code sent!</string>
     <string name="phone_not_existed">Phone number is not existed!</string>
+    <string name="back">Back</string>
+    <string name="catch_a_driver">catch a driver</string>
+    <string name="empty_plate_number">Plate number can\'t be empty!</string>
+    <string name="upload_front_image">Please upload car id front image!</string>
+    <string name="upload_back_image">Please upload car id back image!</string>
+    <string name="choose">Choose</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
+
 </resources>
