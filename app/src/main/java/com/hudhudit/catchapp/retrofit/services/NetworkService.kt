@@ -1,15 +1,14 @@
 package com.hudhudit.catchapp.retrofit.services
 
 import com.hudhudit.catchapp.apputils.modules.BooleanResponse
-import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
-import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserResponse
-import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
-import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.introduction.IntroData
+import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.registration.Countries
-import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarTypes
-import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserResponse
-import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CountryId
+import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
+import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserResponse
+import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
+import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.*
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -40,5 +39,14 @@ interface NetworkService {
 
     @POST("get_car_type")
     suspend fun getCarTypes(@Body countryId: CountryId): Response<CarTypes>
+
+    @GET("get_car_brand")
+    suspend fun getCarBrands(@Header("Lang") lang: String): Response<CarBrands>
+
+    @GET("get_car_model/{id}")
+    suspend fun getCarModels(@Header("Lang") lang: String, @Path(value= "id", encoded=false) id: String): Response<CarModels>
+
+    @POST("create_driver_account")
+    suspend fun catcherCreateAccount(@Body catcherUserSignUp: CatcherUserSignUp): Response<CatcherUserResponse>
 
 }

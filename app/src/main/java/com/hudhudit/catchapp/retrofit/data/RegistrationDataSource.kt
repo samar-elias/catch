@@ -3,6 +3,7 @@ package com.hudhudit.catchapp.retrofit.data
 import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
 import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
 import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
+import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserSignUp
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CountryId
 import com.hudhudit.catchapp.retrofit.services.NetworkService
 import javax.inject.Inject
@@ -42,5 +43,17 @@ class RegistrationDataSource @Inject constructor(
 
     suspend fun getCarTypes(countryId: CountryId) = getResult{
         networkService.getCarTypes(countryId)
+    }
+
+    suspend fun getCarBrands(lang: String) = getResult{
+        networkService.getCarBrands(lang)
+    }
+
+    suspend fun getCarModels(lang: String, id: String) = getResult{
+        networkService.getCarModels(lang, id)
+    }
+
+    suspend fun catcherCreateAccount(catcherUserSignUp: CatcherUserSignUp) = getResult{
+        networkService.catcherCreateAccount(catcherUserSignUp)
     }
 }

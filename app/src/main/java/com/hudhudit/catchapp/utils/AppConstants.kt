@@ -1,8 +1,11 @@
 package com.hudhudit.catchapp.utils
 
+import android.graphics.Bitmap
+import android.util.Base64
 import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
 import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserSignUp
+import java.io.ByteArrayOutputStream
 
 class AppConstants {
 
@@ -14,5 +17,12 @@ class AppConstants {
         lateinit var catcheeSignUp: CatcheeUserSignUp
         lateinit var catcherSignUp: CatcherUserSignUp
         lateinit var signIn: UserSignIn
+
+        fun convertToBase64(bitmap: Bitmap): String? {
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+            val byteArray = byteArrayOutputStream.toByteArray()
+            return Base64.encodeToString(byteArray, Base64.DEFAULT)
+        }
     }
 }
