@@ -6,6 +6,7 @@ import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.C
 import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
 import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.introduction.IntroData
+import com.hudhudit.catchapp.apputils.modules.registration.Countries
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUserResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -14,6 +15,9 @@ interface NetworkService {
 
     @GET("user_intro")
     suspend fun getIntro(): Response<IntroData>
+
+    @GET("get_country")
+    suspend fun getCountries(): Response<Countries>
 
     //Catchee registration
     @POST("check_phone_client")
