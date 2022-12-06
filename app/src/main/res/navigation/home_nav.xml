@@ -9,5 +9,22 @@
         android:id="@+id/mapsFragment"
         android:name="com.hudhudit.catchapp.ui.map.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_catcheeNotificationsFragment"
+            app:destination="@id/catcheeNotificationsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_catcheeHistoryFragment"
+            app:destination="@id/catcheeHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catcheeNotificationsFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catchee.notifications.CatcheeNotificationsFragment"
+        android:label="fragment_catchee_notifications"
+        tools:layout="@layout/fragment_catchee_notifications" />
+    <fragment
+        android:id="@+id/catcheeHistoryFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catchee.history.CatcheeHistoryFragment"
+        android:label="fragment_catchee_history"
+        tools:layout="@layout/fragment_catchee_history" />
 </navigation>

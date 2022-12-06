@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.github.dhaval2404.imagepicker.ImagePicker.Companion.REQUEST_CODE
@@ -63,16 +64,13 @@ class MapsFragment : BaseFragment() {
 
         fetchLocation()
 
-
-
+        onClick()
     }
 
-
-
-
-
-
-
+    private fun onClick(){
+        binding.notifications.setOnClickListener { findNavController().navigate(R.id.action_mapsFragment_to_catcheeNotificationsFragment) }
+        binding.history.setOnClickListener { findNavController().navigate(R.id.action_mapsFragment_to_catcheeHistoryFragment) }
+    }
 
     private fun fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
@@ -142,14 +140,6 @@ class MapsFragment : BaseFragment() {
 
 
     }
-
-
-
-
-
-
-
-
 
     data class GoogleMapMarkerModel(
         val user_id: String,
