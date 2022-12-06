@@ -15,10 +15,10 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import com.hudhudit.catchapp.R
-import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
-import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
 import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.registration.Country
+import com.hudhudit.catchapp.apputils.modules.registration.UserSignIn
+import com.hudhudit.catchapp.apputils.modules.registration.catcheeregistration.CatcheeUserSignUp
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcheeRegistrationBinding
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
@@ -86,13 +86,27 @@ class CatcheeRegistrationFragment : BaseFragment() {
             binding.termConditionsLayout.visibility = View.GONE
         }
         binding.nextBtn.setOnClickListener { checkValidation() }
-        binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
-                countryId = countries[i].id
+//        binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
+//                countryId = countries[i].id
+//            }
+//
+//            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+//        }
+        binding.countriesSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                countryId = countries[position].id
             }
 
-            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
-        }
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
     }
 
     private fun getCountries(){
