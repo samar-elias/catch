@@ -62,6 +62,7 @@
             app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_history"
@@ -72,6 +73,7 @@
             app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notifications"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

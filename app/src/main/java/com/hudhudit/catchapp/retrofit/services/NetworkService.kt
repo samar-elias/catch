@@ -1,6 +1,9 @@
 package com.hudhudit.catchapp.retrofit.services
 
 import com.hudhudit.catchapp.apputils.modules.BooleanResponse
+import com.hudhudit.catchapp.apputils.modules.catchee.history.CatcheeOrdersHistory
+import com.hudhudit.catchapp.apputils.modules.catchee.history.Counts
+import com.hudhudit.catchapp.apputils.modules.catchee.notifications.CatcheeNotifications
 import com.hudhudit.catchapp.apputils.modules.introduction.IntroData
 import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.registration.Countries
@@ -48,5 +51,17 @@ interface NetworkService {
 
     @POST("create_driver_account")
     suspend fun catcherCreateAccount(@Body catcherUserSignUp: CatcherUserSignUp): Response<CatcherUserResponse>
+
+    //Catchee
+    @GET("get_notifications_client")
+    suspend fun getCatcheeNotifications(@Header("Authorization") token: String, @Query("page") page: String): Response<CatcheeNotifications>
+
+    @GET("get_orders_client_history")
+    suspend fun getCatcheeHistory(@Header("Authorization") token: String, @Query("page") page: String): Response<CatcheeOrdersHistory>
+
+    @GET("get_orders_number_and_total_client")
+    suspend fun getHistoryData(@Header("Authorization") token: String): Response<Counts>
+
+
 
 }

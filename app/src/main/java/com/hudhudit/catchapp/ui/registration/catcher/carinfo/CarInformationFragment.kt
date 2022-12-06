@@ -39,6 +39,7 @@ import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.C
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarModel
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCarInformationBinding
+import com.hudhudit.catchapp.ui.main.MainActivity
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
 import com.hudhudit.catchapp.utils.AppConstants
 import com.hudhudit.catchapp.utils.Resource
@@ -287,11 +288,16 @@ class CarInformationFragment : BaseFragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "Signed up user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
+                    AppConstants.userType = "1"
+                    AppConstants.catcherUser = it.data!!
+//                    Toast.makeText(registrationActivity, "Signed up user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
+                    val intent = Intent(registrationActivity, MainActivity:: class.java)
+                    startActivity(intent)
+                    registrationActivity.finish()
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "Signed up failed", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(registrationActivity, "Signed up failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }
