@@ -87,13 +87,27 @@ class CatcherRegistrationFragment : BaseFragment() {
             binding.termConditionsLayout.visibility = View.GONE
         }
         binding.nextBtn.setOnClickListener { checkValidation() }
-        binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
-                countryId = countries[i].id
+//        binding.countriesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
+//                countryId = countries[i].id
+//            }
+//
+//            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+//        }
+        binding.countriesSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                countryId = countries[position].id
             }
 
-            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
-        }
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
     }
 
     private fun getCountries(){

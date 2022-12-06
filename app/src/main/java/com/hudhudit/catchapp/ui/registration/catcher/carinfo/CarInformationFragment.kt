@@ -6,18 +6,17 @@ import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.location.Address
-import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,6 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import com.hudhudit.catchapp.R
-import com.hudhudit.catchapp.apputils.modules.registration.Country
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarBrand
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarModel
 import com.hudhudit.catchapp.core.base.BaseFragment
@@ -47,7 +45,7 @@ import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.InputStream
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 @AndroidEntryPoint
 class CarInformationFragment : BaseFragment() {
@@ -69,7 +67,7 @@ class CarInformationFragment : BaseFragment() {
     var latitude = ""
     var longitude = ""
     var token = ""
-    var isFront = true
+    private var isFront = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -103,21 +101,21 @@ class CarInformationFragment : BaseFragment() {
 
     private fun onClick(){
         binding.navigateBack.setOnClickListener { findNavController().popBackStack() }
-        binding.carBrandSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
-                carBrand = carBrands[i].id
-                getCarModels(carBrand)
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
-        }
-        binding.carModelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
-                carModel = carModels[i].id
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
-        }
+//        binding.carBrandSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
+//                carBrand = carBrands[i].id
+//                getCarModels(carBrand)
+//            }
+//
+//            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+//        }
+//        binding.carModelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {
+//                carModel = carModels[i].id
+//            }
+//
+//            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+//        }
         binding.chooseFrontCarId.setOnClickListener {
             isFront = true
             imagePickerPopUp()
@@ -127,6 +125,35 @@ class CarInformationFragment : BaseFragment() {
             imagePickerPopUp()
         }
         binding.signUpBtn.setOnClickListener { checkValidation() }
+        binding.carBrandSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                carBrand = carBrands[position].id
+                getCarModels(carBrand)
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
+        binding.carModelSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                carModel = carModels[position].id
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
     }
 
     private fun getToken() {
