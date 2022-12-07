@@ -161,7 +161,7 @@ class MapsFragment : BaseFragment() {
                 findNavController().navigate(R.id.action_mapsFragment_to_catcherHistoryFragment)
             }
         }
-//        binding.logout.setOnClickListener { logoutPopUp() }
+        binding.logout.setOnClickListener { logoutPopUp() }
     }
 
     private fun fetchLocation() {
