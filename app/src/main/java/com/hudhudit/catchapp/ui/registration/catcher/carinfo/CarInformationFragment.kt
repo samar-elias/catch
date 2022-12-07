@@ -102,6 +102,7 @@ class CarInformationFragment : BaseFragment() {
     }
 
     private fun onClick(){
+        binding.background.setOnClickListener { registrationActivity.hideKeyboard() }
         binding.navigateBack.setOnClickListener { findNavController().popBackStack() }
 //        binding.carBrandSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 //            override fun onItemSelected(adapterView: AdapterView<*>?, view: View, i: Int, l: Long) {

@@ -83,28 +83,28 @@ class MapsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireContext());
-
-
-        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-
-       fetchLocation()
-
-        var locations= mutableListOf<LatLng>()
-        locations.add(LatLng(31.969313097394057, 35.86470320252633))
-        locations.add(LatLng(23.54879797, 23.54879797))
-        locations.add(LatLng(31.968368301663176, 35.86537712663036))
-
-
-      locations.forEach {
-         var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
-          //println(x.toString())
-      }
-        binding.btnStart.onClick {
-
-            getAllDriver()
-        }
+//        fusedLocationProviderClient =
+//            LocationServices.getFusedLocationProviderClient(requireContext());
+//
+//
+//        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+//
+//       fetchLocation()
+//
+//        var locations= mutableListOf<LatLng>()
+//        locations.add(LatLng(31.969313097394057, 35.86470320252633))
+//        locations.add(LatLng(23.54879797, 23.54879797))
+//        locations.add(LatLng(31.968368301663176, 35.86537712663036))
+//
+//
+//      locations.forEach {
+//         var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
+//          //println(x.toString())
+//      }
+//        binding.btnStart.onClick {
+//
+//            getAllDriver()
+//        }
         onClick()
     }
 

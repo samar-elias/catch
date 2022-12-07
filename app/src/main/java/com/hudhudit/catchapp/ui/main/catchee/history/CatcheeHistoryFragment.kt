@@ -61,6 +61,8 @@ class CatcheeHistoryFragment : Fragment() {
                 AppConstants.catcheeUser.results.name.indexOf(" ")
             )
             binding.hiUser.text = resources.getString(R.string.hi)+ " "+ firstName+"!"
+        }else{
+            binding.hiUser.text = resources.getString(R.string.hi)+ " "+ AppConstants.catcheeUser.results.name+"!"
         }
     }
 
