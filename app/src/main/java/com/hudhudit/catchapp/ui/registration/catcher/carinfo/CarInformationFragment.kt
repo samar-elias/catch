@@ -34,6 +34,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarBrand
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarModel
@@ -290,10 +291,7 @@ class CarInformationFragment : BaseFragment() {
                     binding.progressBar.visibility = View.GONE
                     AppConstants.userType = "1"
                     AppConstants.catcherUser = it.data!!
-//                    Toast.makeText(registrationActivity, "Signed up user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
-                    val intent = Intent(registrationActivity, MainActivity:: class.java)
-                    startActivity(intent)
-                    registrationActivity.finish()
+                    saveUserToSharedPreferences()
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
@@ -339,6 +337,22 @@ class CarInformationFragment : BaseFragment() {
                 Manifest.permission.ACCESS_FINE_LOCATION),
             LOCATION_CODE
         )
+    }
+
+    private fun saveUserToSharedPreferences() {
+        val sharedPreferences =
+            registrationActivity.getSharedPreferences(AppConstants.SHARED_PREF_KEY, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(AppConstants.ID_KEY, AppConstants.catcherUser.results.id)
+
+        val gson = Gson()
+        val json = gson.toJson(AppConstants.catcherUser)
+        editor.putString(AppConstants.USER_KEY, json)
+        editor.putString(AppConstants.TYPE_KEY, "1")
+        editor.apply()
+        val intent = Intent(registrationActivity, MainActivity:: class.java)
+        startActivity(intent)
+        registrationActivity.finish()
     }
 
     override fun onRequestPermissionsResult(
