@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.Task
 import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentMapsBinding
+import com.hudhudit.catchapp.utils.AppConstants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,20 +57,32 @@ class MapsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireContext());
-
-
-        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-
-        fetchLocation()
+//        fusedLocationProviderClient =
+//            LocationServices.getFusedLocationProviderClient(requireContext());
+//
+//
+//        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+//
+//        fetchLocation()
 
         onClick()
     }
 
     private fun onClick(){
-        binding.notifications.setOnClickListener { findNavController().navigate(R.id.action_mapsFragment_to_catcheeNotificationsFragment) }
-        binding.history.setOnClickListener { findNavController().navigate(R.id.action_mapsFragment_to_catcheeHistoryFragment) }
+        binding.notifications.setOnClickListener {
+            if(AppConstants.userType == "0"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcheeNotificationsFragment)
+            }else if (AppConstants.userType == "1"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcherNotificationsFragment)
+            }
+        }
+        binding.history.setOnClickListener {
+            if (AppConstants.userType == "0"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcheeHistoryFragment)
+            }else if (AppConstants.userType == "1"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcherHistoryFragment)
+            }
+        }
     }
 
     private fun fetchLocation() {

@@ -4,6 +4,8 @@ import com.hudhudit.catchapp.apputils.modules.BooleanResponse
 import com.hudhudit.catchapp.apputils.modules.catchee.history.CatcheeOrdersHistory
 import com.hudhudit.catchapp.apputils.modules.catchee.history.Counts
 import com.hudhudit.catchapp.apputils.modules.catchee.notifications.CatcheeNotifications
+import com.hudhudit.catchapp.apputils.modules.catcher.history.CatcherOrdersHistory
+import com.hudhudit.catchapp.apputils.modules.catcher.notifications.CatcherNotifications
 import com.hudhudit.catchapp.apputils.modules.introduction.IntroData
 import com.hudhudit.catchapp.apputils.modules.registration.CheckPhone
 import com.hudhudit.catchapp.apputils.modules.registration.Countries
@@ -60,7 +62,16 @@ interface NetworkService {
     suspend fun getCatcheeHistory(@Header("Authorization") token: String, @Query("page") page: String): Response<CatcheeOrdersHistory>
 
     @GET("get_orders_number_and_total_client")
-    suspend fun getHistoryData(@Header("Authorization") token: String): Response<Counts>
+    suspend fun getCatcheeHistoryData(@Header("Authorization") token: String): Response<Counts>
+
+    @GET("get_notifications_driver")
+    suspend fun getCatcherNotifications(@Header("Authorization") token: String, @Query("page") page: String): Response<CatcherNotifications>
+
+    @GET("get_orders_driver_history")
+    suspend fun getCatcherHistory(@Header("Authorization") token: String, @Query("page") page: String): Response<CatcherOrdersHistory>
+
+    @GET("get_orders_number_and_total_driver")
+    suspend fun getCatcherHistoryData(@Header("Authorization") token: String): Response<Counts>
 
 
 

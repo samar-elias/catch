@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_mapsFragment_to_catcheeHistoryFragment"
             app:destination="@id/catcheeHistoryFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_catcherNotificationsFragment"
+            app:destination="@id/catcherNotificationsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_catcherHistoryFragment"
+            app:destination="@id/catcherHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/catcheeNotificationsFragment"
@@ -27,4 +33,14 @@
         android:name="com.hudhudit.catchapp.ui.main.catchee.history.CatcheeHistoryFragment"
         android:label="fragment_catchee_history"
         tools:layout="@layout/fragment_catchee_history" />
+    <fragment
+        android:id="@+id/catcherNotificationsFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catcher.notifications.CatcherNotificationsFragment"
+        android:label="fragment_catcher_notifications"
+        tools:layout="@layout/fragment_catcher_notifications" />
+    <fragment
+        android:id="@+id/catcherHistoryFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catcher.history.CatcherHistoryFragment"
+        android:label="fragment_catcher_history"
+        tools:layout="@layout/fragment_catcher_history" />
 </navigation>
