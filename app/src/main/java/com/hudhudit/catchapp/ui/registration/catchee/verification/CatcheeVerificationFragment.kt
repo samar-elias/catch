@@ -97,6 +97,7 @@ class CatcheeVerificationFragment : BaseFragment() {
     }
 
     private fun onClick(){
+        binding.background.setOnClickListener { registrationActivity.hideKeyboard() }
         binding.navigateBack.setOnClickListener { findNavController().popBackStack() }
         binding.resendCode.setOnClickListener {
             Toast.makeText(registrationActivity, resources.getString(R.string.code_sent), Toast.LENGTH_SHORT).show()

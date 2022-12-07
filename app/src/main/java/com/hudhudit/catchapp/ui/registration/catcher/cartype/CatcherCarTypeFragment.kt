@@ -51,6 +51,7 @@ class CatcherCarTypeFragment : BaseFragment() {
     }
 
     private fun onClick(){
+        binding.background.setOnClickListener { registrationActivity.hideKeyboard() }
         binding.navigateBack.setOnClickListener { findNavController().popBackStack() }
         binding.taxi.setOnClickListener {
             binding.taxiSelectedLayout.visibility = View.VISIBLE

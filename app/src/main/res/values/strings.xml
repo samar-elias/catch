@@ -74,6 +74,7 @@
     <string name="white_space">Please enter your first and last name!</string>
     <string name="exit_your_account">Exit your account</string>
     <string name="are_you_sure_you_want_to_log_out_from_your_account">Are you sure you want to log out from your account?</string>
+    <string name="catchee_name">Catchee Name:</string>
 
 
 </resources>
