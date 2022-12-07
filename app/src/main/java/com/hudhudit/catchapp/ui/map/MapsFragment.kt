@@ -17,9 +17,14 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
+
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation.findNavController
+
 import androidx.navigation.fragment.findNavController
+
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.github.dhaval2404.imagepicker.ImagePicker.Companion.REQUEST_CODE
@@ -35,8 +40,11 @@ import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.apputils.modules.driverlocation.DriverModel
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentMapsBinding
+
 import com.hudhudit.catchapp.utils.Resource
+
 import com.hudhudit.catchapp.utils.AppConstants
+
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
@@ -80,24 +88,16 @@ class MapsFragment : BaseFragment() {
         locations.add(LatLng(23.54879797, 23.54879797))
         locations.add(LatLng(31.968368301663176, 35.86537712663036))
 
-//        fusedLocationProviderClient =
-//            LocationServices.getFusedLocationProviderClient(requireContext());
-//
-//
-//        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-//
-//        fetchLocation()
 
       locations.forEach {
          var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
           //println(x.toString())
       }
         binding.btnStart.onClick {
-        onClick()
-    }
 
             getAllDriver()
         }
+        onClick()
     }
 
 
@@ -141,6 +141,10 @@ class MapsFragment : BaseFragment() {
 
 
 
+
+
+
+
     private fun onClick(){
         binding.notifications.setOnClickListener {
             if(AppConstants.userType == "0"){
@@ -157,6 +161,7 @@ class MapsFragment : BaseFragment() {
             }
         }
     }
+
 
     private fun fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
