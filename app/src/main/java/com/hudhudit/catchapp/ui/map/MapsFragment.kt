@@ -1,12 +1,16 @@
 package com.hudhudit.catchapp.ui.map
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.location.Location
 import android.os.Bundle
@@ -15,7 +19,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
@@ -38,8 +44,10 @@ import com.google.android.gms.tasks.Task
 import com.hudhud.eva.core.onClick
 import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.apputils.modules.driverlocation.DriverModel
+import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CatcherUser
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentMapsBinding
+import com.hudhudit.catchapp.ui.splash.SplashActivity
 
 import com.hudhudit.catchapp.utils.Resource
 
@@ -160,6 +168,7 @@ class MapsFragment : BaseFragment() {
                 findNavController().navigate(R.id.action_mapsFragment_to_catcherHistoryFragment)
             }
         }
+        binding.logout.setOnClickListener { logoutPopUp() }
     }
 
 
@@ -319,7 +328,33 @@ class MapsFragment : BaseFragment() {
     }
 
 
+    private fun logoutPopUp(){
+        val alertView: View =
+            LayoutInflater.from(context).inflate(R.layout.dilalog_logout, null)
+        val alertBuilder = AlertDialog.Builder(context).setView(alertView).show()
+        alertBuilder.show()
+        alertBuilder.setCancelable(false)
 
+        alertBuilder.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val cancel: CardView = alertView.findViewById(R.id.cancel)
+        val logout: CardView = alertView.findViewById(R.id.logout)
+
+        cancel.setOnClickListener { alertBuilder.dismiss() }
+        logout.setOnClickListener {
+            val preferences: SharedPreferences = requireActivity().getSharedPreferences(
+                AppConstants.SHARED_PREF_KEY,
+                Context.MODE_PRIVATE
+            )
+            AppConstants.userType = ""
+            val editor = preferences.edit()
+            editor.clear()
+            editor.apply()
+            val splashIntent = Intent(requireActivity(), SplashActivity::class.java)
+            startActivity(splashIntent)
+            requireActivity().finish()
+            alertBuilder.dismiss()}
+    }
 
 
 }
