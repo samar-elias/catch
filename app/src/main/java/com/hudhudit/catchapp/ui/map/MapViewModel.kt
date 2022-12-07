@@ -9,6 +9,7 @@ import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class MapViewModel  @Inject constructor(
     val repository: MapRepository

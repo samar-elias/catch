@@ -48,9 +48,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
 
-
-
-
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     testImplementation 'junit:junit:4.13.2'
@@ -117,7 +114,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
 
-
     implementation 'com.github.aabhasr1:OtpView:v1.1.2'
 
     implementation "androidx.browser:browser:1.4.0"
@@ -137,7 +133,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-dynamic-links:21.0.0'
 
-
+    //Circle imageview
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //payment
     implementation 'com.github.Tap-Payments:goSellSDK-AndroidX:3.13.2'
