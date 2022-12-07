@@ -50,8 +50,18 @@ class CatcheeHistoryFragment : Fragment() {
         onClick()
         getHistoryData()
         getOrdersHistory()
-        binding.hiUser.text = resources.getString(R.string.hi)+ " "+ AppConstants.catcheeUser.results.name
+        setData()
 
+    }
+
+    private fun setData(){
+        if (AppConstants.catcheeUser.results.name.contains(" ")) {
+            val firstName = AppConstants.catcheeUser.results.name.subSequence(
+                0,
+                AppConstants.catcheeUser.results.name.indexOf(" ")
+            )
+            binding.hiUser.text = resources.getString(R.string.hi)+ " "+ firstName+"!"
+        }
     }
 
     private fun onClick(){
