@@ -55,6 +55,16 @@
             android:src="@drawable/white_catch_logo"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/_50sdp"/>
+
+        <ImageView
+            android:id="@+id/navigate_back"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/navigate_back"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
@@ -194,19 +204,21 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:background="@color/white"
-                                android:padding="@dimen/_7sdp">
+                                android:background="@color/white">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/country"
                                     android:fontFamily="@font/cairo_regular"
                                     android:textSize="@dimen/_8ssp"
-                                    android:textColor="@color/dark_gray"/>
+                                    android:textColor="@color/dark_gray"
+                                    android:layout_marginTop="@dimen/_7sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"/>
                                 <Spinner
+                                    android:id="@+id/countries_spinner"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/_5sdp"/>
+                                    android:layout_height="wrap_content"/>
                             </androidx.appcompat.widget.LinearLayoutCompat>
                         </com.google.android.material.card.MaterialCardView>
                         <com.google.android.material.card.MaterialCardView

@@ -40,4 +40,40 @@
     <string name="verification_failed">Verification not completed! Try again!</string>
     <string name="code_sent">Code sent!</string>
     <string name="phone_not_existed">Phone number is not existed!</string>
+    <string name="back">Back</string>
+    <string name="catch_a_driver">catch a driver</string>
+    <string name="empty_plate_number">Plate number can\'t be empty!</string>
+    <string name="upload_front_image">Please upload car id front image!</string>
+    <string name="upload_back_image">Please upload car id back image!</string>
+    <string name="choose">Choose</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="finish_trip">Finish Trip</string>
+    <string name="you_catch_is_done">You Catch is Done!</string>
+    <string name="with_your_catchee">With your catchee</string>
+    <string name="you_have_successful_reached_your_destination">You have successful reached your destination</string>
+    <string name="start_trip">Start Trip</string>
+    <string name="account">account?</string>
+    <string name="are_you_sure_you_want_to_log_out_from_your">Are you sure you want to log out from your</string>
+    <string name="yes_log_out">Yes, Log out</string>
+    <string name="no_stay_in">No, Stay in</string>
+    <string name="affordable_catches">Affordable Catches</string>
+    <string name="luxury_catches">Luxury Catches</string>
+    <string name="coming_soon">Coming Soon!</string>
+    <string name="catches_history">Catches History</string>
+    <string name="hi">Hi,</string>
+    <string name="here_s_your_balance">Here’s Your Balance.</string>
+    <string name="total_fees">Total Fees</string>
+    <string name="total_catches">Total Catches</string>
+    <string name="catch_details">Catch Details</string>
+    <string name="catcher_name">Catcher Name:</string>
+    <string name="catch_fees">Catch Fees:</string>
+    <string name="catch_time_date">Catch Time &amp; Date:</string>
+    <string name="you_didn_t_grab_any_catches_yet">You didn\'t grab any catches yet!</string>
+    <string name="no_notifications_to_show_yet">No notifications to show yet!</string>
+    <string name="white_space">Please enter your first and last name!</string>
+    <string name="exit_your_account">Exit your account</string>
+    <string name="are_you_sure_you_want_to_log_out_from_your_account">Are you sure you want to log out from your account?</string>
+
+
 </resources>

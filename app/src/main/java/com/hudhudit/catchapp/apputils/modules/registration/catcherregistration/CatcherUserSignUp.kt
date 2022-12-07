@@ -2,6 +2,7 @@ package com.hudhudit.catchapp.apputils.modules.registration.catcherregistration
 
 data class CatcherUserSignUp(var name: String = "",
                              var phone: String = "",
+                             var country_id: String = "",
                              var cart_type: String = "",
                              var plate_number: String = "",
                              var car_brand_id: String = "",

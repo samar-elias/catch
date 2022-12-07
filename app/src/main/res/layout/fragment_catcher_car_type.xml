@@ -101,58 +101,142 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"/>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/taxi_selected_layout"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:weightSum="2"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:orientation="horizontal"
-                android:visibility="visible">
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/only_taxi_selected_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/_7sdp"
-                    app:cardCornerRadius="@dimen/_5sdp"
-                    app:cardElevation="@dimen/_3sdp">
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:weightSum="2"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_7sdp"
-                        android:orientation="vertical"
-                        android:background="@color/red">
-                        <TextView
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/_7sdp"
+                        app:cardCornerRadius="@dimen/_5sdp"
+                        app:cardElevation="@dimen/_3sdp">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_7sdp"
+                            android:orientation="vertical"
+                            android:background="@color/red">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/taxi"
+                                android:fontFamily="@font/cairo_bold"
+                                android:textSize="@dimen/_18ssp"
+                                android:textColor="@color/white"/>
+                            <ImageView
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/taxi"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_gravity="end"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </com.google.android.material.card.MaterialCardView>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/margin_basic_0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/_7sdp">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:padding="@dimen/_7sdp"
+                            android:alpha="0.4"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/private_car"
+                                android:fontFamily="@font/cairo_bold"
+                                android:textSize="@dimen/_18ssp"
+                                android:textColor="@color/black"/>
+                            <ImageView
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/private_car"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_gravity="end"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <com.google.android.material.button.MaterialButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/taxi"
-                            android:fontFamily="@font/cairo_bold"
-                            android:textSize="@dimen/_18ssp"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:textColor="@color/white"/>
-                        <ImageView
-                            android:layout_width="@dimen/_70sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:src="@drawable/taxi"
-                            android:layout_gravity="end"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:cornerRadius="@dimen/_15sdp"
+                            android:text="@string/coming_soon"
+                            android:enabled="false"
+                            android:backgroundTint="@color/yellow"
+                            android:textColor="@color/white"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/_8ssp"
+                            android:alpha="0.5"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/taxi_selected_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/_7sdp"
-                    app:cardCornerRadius="@dimen/_5sdp"
-                    app:cardElevation="@dimen/_3sdp"
-                    android:alpha="0.4">
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:weightSum="2"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/_7sdp"
+                        app:cardCornerRadius="@dimen/_5sdp"
+                        app:cardElevation="@dimen/_3sdp">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_7sdp"
+                            android:orientation="vertical"
+                            android:background="@color/red">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/taxi"
+                                android:fontFamily="@font/cairo_bold"
+                                android:textSize="@dimen/_18ssp"
+                                android:textColor="@color/white"/>
+                            <ImageView
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/taxi"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_gravity="end"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </com.google.android.material.card.MaterialCardView>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/private_car"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:padding="@dimen/_7sdp"
+                        android:layout_margin="@dimen/_7sdp"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
@@ -160,16 +244,80 @@
                             android:text="@string/private_car"
                             android:fontFamily="@font/cairo_bold"
                             android:textSize="@dimen/_18ssp"
-                            android:layout_marginTop="@dimen/_10sdp"
                             android:textColor="@color/black"/>
                         <ImageView
                             android:layout_width="@dimen/_70sdp"
                             android:layout_height="@dimen/_40sdp"
                             android:src="@drawable/private_car"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:layout_gravity="end"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
-                </com.google.android.material.card.MaterialCardView>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/private_car_selected_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:weightSum="2"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/taxi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:padding="@dimen/_7sdp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/taxi"
+                            android:fontFamily="@font/cairo_bold"
+                            android:textSize="@dimen/_18ssp"
+                            android:textColor="@color/black"/>
+                        <ImageView
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/taxi"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_gravity="end"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/_7sdp"
+                        app:cardCornerRadius="@dimen/_5sdp"
+                        app:cardElevation="@dimen/_3sdp">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_7sdp"
+                            android:orientation="vertical"
+                            android:background="@color/red">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/private_car"
+                                android:fontFamily="@font/cairo_bold"
+                                android:textSize="@dimen/_18ssp"
+                                android:textColor="@color/white"/>
+                            <ImageView
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/private_car"
+                                android:layout_gravity="end"
+                                android:layout_marginTop="@dimen/_10sdp"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/next_btn"
                 android:layout_width="match_parent"
@@ -188,5 +336,16 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

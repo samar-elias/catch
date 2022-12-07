@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/mapsFragment">
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.hudhudit.catchapp.ui.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_catcheeNotificationsFragment"
+            app:destination="@id/catcheeNotificationsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_catcheeHistoryFragment"
+            app:destination="@id/catcheeHistoryFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_catcherNotificationsFragment"
+            app:destination="@id/catcherNotificationsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_catcherHistoryFragment"
+            app:destination="@id/catcherHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catcheeNotificationsFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catchee.notifications.CatcheeNotificationsFragment"
+        android:label="fragment_catchee_notifications"
+        tools:layout="@layout/fragment_catchee_notifications" />
+    <fragment
+        android:id="@+id/catcheeHistoryFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catchee.history.CatcheeHistoryFragment"
+        android:label="fragment_catchee_history"
+        tools:layout="@layout/fragment_catchee_history" />
+    <fragment
+        android:id="@+id/catcherNotificationsFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catcher.notifications.CatcherNotificationsFragment"
+        android:label="fragment_catcher_notifications"
+        tools:layout="@layout/fragment_catcher_notifications" />
+    <fragment
+        android:id="@+id/catcherHistoryFragment"
+        android:name="com.hudhudit.catchapp.ui.main.catcher.history.CatcherHistoryFragment"
+        android:label="fragment_catcher_history"
+        tools:layout="@layout/fragment_catcher_history" />
+</navigation>
