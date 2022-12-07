@@ -146,7 +146,7 @@ dependencies {
 //CountryCodePicker
     //   implementation 'com.hbb20:ccp:2.4.5'
 
-    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta04'
+    implementation  'com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta04'
     implementation "com.google.android.gms:play-services-location:15.0.1"
 
     implementation 'androidx.security:security-crypto:1.1.0-alpha02'
@@ -159,12 +159,15 @@ dependencies {
 
 
     // Also declare the dependency for the Google Play services library and specify its version
-    implementation 'com.google.firebase:firebase-messaging:23.0.0'
-    implementation 'com.google.firebase:firebase-auth:21.0.1'
-    implementation 'com.google.firebase:firebase-core:20.0.0'
-    implementation 'com.google.firebase:firebase-messaging:23.0.0'
-    implementation 'com.google.android.gms:play-services-auth:19.2.0'
 
+
+    implementation 'com.google.firebase:firebase-core:20.0.0'
+
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    implementation platform('com.google.firebase:firebase-bom:30.3.0')
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.6'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.6'
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
 
     // paging 3
     implementation "androidx.paging:paging-runtime-ktx:3.0.0-beta03"
@@ -198,5 +201,10 @@ dependencies {
 //ssp & sdp
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+
+
+
+
 
 }
