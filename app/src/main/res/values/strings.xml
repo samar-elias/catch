@@ -61,6 +61,17 @@
     <string name="affordable_catches">Affordable Catches</string>
     <string name="luxury_catches">Luxury Catches</string>
     <string name="coming_soon">Coming Soon!</string>
+    <string name="catches_history">Catches History</string>
+    <string name="hi">Hi,</string>
+    <string name="here_s_your_balance">Here’s Your Balance.</string>
+    <string name="total_fees">Total Fees</string>
+    <string name="total_catches">Total Catches</string>
+    <string name="catch_details">Catch Details</string>
+    <string name="catcher_name">Catcher Name:</string>
+    <string name="catch_fees">Catch Fees:</string>
+    <string name="catch_time_date">Catch Time &amp; Date:</string>
+    <string name="you_didn_t_grab_any_catches_yet">You didn\'t grab any catches yet!</string>
+    <string name="no_notifications_to_show_yet">No notifications to show yet!</string>
 
 
 </resources>

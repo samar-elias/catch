@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.github.dhaval2404.imagepicker.ImagePicker.Companion.REQUEST_CODE
@@ -35,6 +36,7 @@ import com.hudhudit.catchapp.apputils.modules.driverlocation.DriverModel
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentMapsBinding
 import com.hudhudit.catchapp.utils.Resource
+import com.hudhudit.catchapp.utils.AppConstants
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
@@ -78,12 +80,21 @@ class MapsFragment : BaseFragment() {
         locations.add(LatLng(23.54879797, 23.54879797))
         locations.add(LatLng(31.968368301663176, 35.86537712663036))
 
+//        fusedLocationProviderClient =
+//            LocationServices.getFusedLocationProviderClient(requireContext());
+//
+//
+//        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+//
+//        fetchLocation()
 
       locations.forEach {
          var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
           //println(x.toString())
       }
         binding.btnStart.onClick {
+        onClick()
+    }
 
             getAllDriver()
         }
@@ -130,6 +141,22 @@ class MapsFragment : BaseFragment() {
 
 
 
+    private fun onClick(){
+        binding.notifications.setOnClickListener {
+            if(AppConstants.userType == "0"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcheeNotificationsFragment)
+            }else if (AppConstants.userType == "1"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcherNotificationsFragment)
+            }
+        }
+        binding.history.setOnClickListener {
+            if (AppConstants.userType == "0"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcheeHistoryFragment)
+            }else if (AppConstants.userType == "1"){
+                findNavController().navigate(R.id.action_mapsFragment_to_catcherHistoryFragment)
+            }
+        }
+    }
 
     private fun fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
@@ -270,6 +297,7 @@ class MapsFragment : BaseFragment() {
         }
         mapFragment!!.getMapAsync(callback)
     }
+
     data class GoogleMapMarkerModel(
         val user_id: String,
         var marker: Marker

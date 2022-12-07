@@ -1,6 +1,7 @@
 package com.hudhudit.catchapp.ui.registration.catchee.verification
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.hudhudit.catchapp.R
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcheeVerificationBinding
+import com.hudhudit.catchapp.ui.introduction.IntroductionActivity
+import com.hudhudit.catchapp.ui.main.MainActivity
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
 import com.hudhudit.catchapp.utils.AppConstants
 import com.hudhudit.catchapp.utils.Resource
@@ -164,11 +167,16 @@ class CatcheeVerificationFragment : BaseFragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "Signed up user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
+                    AppConstants.userType = "0"
+                    AppConstants.catcheeUser = it.data!!
+//                    Toast.makeText(registrationActivity, "Signed up user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
+                    val intent = Intent(registrationActivity, MainActivity:: class.java)
+                    startActivity(intent)
+                    registrationActivity.finish()
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "Signed up failed", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(registrationActivity, "Signed up failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -182,11 +190,16 @@ class CatcheeVerificationFragment : BaseFragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "Signed in user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
+                    AppConstants.userType = "0"
+                    AppConstants.catcheeUser = it.data!!
+//                    Toast.makeText(registrationActivity, "Signed in user id: "+it.data!!.results.id, Toast.LENGTH_SHORT).show()
+                    val intent = Intent(registrationActivity, MainActivity:: class.java)
+                    startActivity(intent)
+                    registrationActivity.finish()
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(registrationActivity, "Signed in failed", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(registrationActivity, "Signed in failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }
