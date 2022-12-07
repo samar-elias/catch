@@ -13,6 +13,7 @@ class AppConstants {
         const val defaultLanguageKey:String ="DEFAULT_LANGUAGE"
         const val isLoggedInKey:String ="isLoggedInKey"
         const val BaseUrl = "http://driver.hudhudclient.com/Api/"
+        const val USER="Users"
 
         lateinit var catcheeSignUp: CatcheeUserSignUp
         lateinit var catcherSignUp: CatcherUserSignUp

@@ -1,8 +1,12 @@
 package com.hudhudit.catchapp.ui.map
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.location.Location
 import android.os.Bundle
@@ -10,8 +14,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.github.dhaval2404.imagepicker.ImagePicker.Companion.REQUEST_CODE
@@ -22,26 +29,29 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
+import com.hudhud.eva.core.onClick
 import com.hudhudit.catchapp.R
+import com.hudhudit.catchapp.apputils.modules.driverlocation.DriverModel
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentMapsBinding
+import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.DecimalFormat
+
 
 @AndroidEntryPoint
 class MapsFragment : BaseFragment() {
     lateinit var binding: FragmentMapsBinding
 
     private val viewModel by viewModels<MapViewModel>()
-
-
-
     var currentLocation: Location? = null
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
     val boundBuilder = LatLngBounds.Builder()
     var mapFragment: SupportMapFragment? = null
-    private val requestCall = 42
-    private var lat=23.54879797
-    private var lng=23.54879797
+    private var lat:Double=31.969313097394057
+    private var lng:Double=35.86470320252633
+
+    var googleMapMarkers: MutableList<GoogleMapMarkerModel> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,14 +71,61 @@ class MapsFragment : BaseFragment() {
 
         mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
 
-        fetchLocation()
+       fetchLocation()
+
+        var locations= mutableListOf<LatLng>()
+        locations.add(LatLng(31.969313097394057, 35.86470320252633))
+        locations.add(LatLng(23.54879797, 23.54879797))
+        locations.add(LatLng(31.968368301663176, 35.86537712663036))
 
 
+      locations.forEach {
+         var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
+          //println(x.toString())
+      }
+        binding.btnStart.onClick {
 
+            getAllDriver()
+        }
     }
 
 
 
+    fun calculateDistance(
+        startLatitude: Double,
+        startLongitude: Double,
+        endLatitude: Double,
+        endLongitude: Double
+    ): Double {
+        val results = FloatArray(3)
+        Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results)
+        return results[0].toDouble()
+    }
+    fun CalculationByDistance(StartP: LatLng, EndP: LatLng): Double {
+        val Radius = 6371 // radius of earth in Km
+        val lat1 = StartP.latitude
+        val lat2 = EndP.latitude
+        val lon1 = StartP.longitude
+        val lon2 = EndP.longitude
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+        val a = (Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + (Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2)))
+        val c = 2 * Math.asin(Math.sqrt(a))
+        val valueResult = Radius * c
+        val km = valueResult / 1
+        val newFormat = DecimalFormat("####")
+        val kmInDec: Int = Integer.valueOf(newFormat.format(km))
+        val meter = valueResult % 1000
+        val meterInDec: Int = Integer.valueOf(newFormat.format(meter))
+        Log.i(
+            "Radius Value", "" + valueResult + "   KM  " + kmInDec
+                    + " Meter   " + meterInDec
+        )
+        return Radius * c
+    }
 
 
 
@@ -98,7 +155,7 @@ class MapsFragment : BaseFragment() {
                 lng=currentLocation!!.longitude
                 Log.d("mylocation", "lat"+currentLocation!!.latitude.toString() + "lng"+currentLocation!!.longitude.toString())
 
-                // removeAllMarkers()
+                 removeAllMarkers()
                 val callback = OnMapReadyCallback { googleMap ->
                     val latLng = LatLng( currentLocation!!.latitude,
                         currentLocation!!.longitude)
@@ -123,7 +180,7 @@ class MapsFragment : BaseFragment() {
                                         100
                                     )
                                 )
-
+                                getAllDriver()
 
                             }
 
@@ -134,6 +191,7 @@ class MapsFragment : BaseFragment() {
                         )
                 }
 
+
                 mapFragment!!.getMapAsync(callback)
 
 
@@ -142,20 +200,91 @@ class MapsFragment : BaseFragment() {
 
 
     }
+    private fun getAllDriver(){
+        viewModel.getDriver()
+
+        viewModel.getDriverStatus.observe(viewLifecycleOwner, Observer {
+            if(it != null){
+                if (it!!.status == Resource.Status.SUCCESS) {
+                    it.data!!.toMutableList().forEach{
+                        addProviderToMarker(it)
+
+                    }
+                    removeAllMarkers()
+                    Log.d("datakk", it.data!!.toMutableList().toString())
 
 
+                }
+                if (it!!.status == Resource.Status.ERROR) {
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+            viewModel.reset()
+        })
+    }
+    fun addProviderToMarker(
+        driverModel: DriverModel?
+    ) {
+        val callback = OnMapReadyCallback { googleMap ->
+            val sydney = LatLng(driverModel!!.lat!!.toDouble(), driverModel.lang!!.toDouble())
+            boundBuilder.include(sydney)
+            Glide.with(this)
+                .asBitmap()
+                .load(R.drawable.taxi)
+                .into(object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
+                    ) {
+
+                        var markerOptions =
+                            MarkerOptions()
+                                .position(sydney)
+                                .title("user_name")
+                        .icon(BitmapDescriptorFactory.fromBitmap(resource))
+
+                        var markerModel = googleMap.addMarker(markerOptions).let {
+                            GoogleMapMarkerModel(
+                                "1",
+                                it!!
+                            )
+                        }
 
 
+                        if (markerModel != null) {
+                            googleMapMarkers.add(markerModel)
+                        }
 
 
+                        // googleMapMarkers.removeAt(0)
+
+                    }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {
+                    }
+
+                }
+                )
 
 
-
+        }
+        mapFragment!!.getMapAsync(callback)
+    }
     data class GoogleMapMarkerModel(
         val user_id: String,
         var marker: Marker
 
     )
+
+
+
+    private fun removeAllMarkers() {
+        for (mLocationMarker in googleMapMarkers) {
+            mLocationMarker.marker.remove()
+        }
+        googleMapMarkers.clear()
+    }
+
 
 
 
