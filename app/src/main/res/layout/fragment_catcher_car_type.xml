@@ -144,18 +144,20 @@
                                 android:layout_gravity="end"/>
                         </androidx.appcompat.widget.LinearLayoutCompat>
                     </com.google.android.material.card.MaterialCardView>
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="0dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/margin_basic_0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_margin="@dimen/_7sdp"
-                        app:cardCornerRadius="@dimen/_5sdp"
-                        app:cardElevation="@dimen/_3sdp"
-                        android:alpha="0.4">
+                        android:layout_margin="@dimen/_7sdp">
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             android:padding="@dimen/_7sdp"
+                            android:alpha="0.4"
                             android:orientation="vertical">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -171,7 +173,22 @@
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:layout_gravity="end"/>
                         </androidx.appcompat.widget.LinearLayoutCompat>
-                    </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:cornerRadius="@dimen/_15sdp"
+                            android:text="@string/coming_soon"
+                            android:enabled="false"
+                            android:backgroundTint="@color/yellow"
+                            android:textColor="@color/white"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/_8ssp"
+                            android:alpha="0.5"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.appcompat.widget.LinearLayoutCompat>
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/taxi_selected_layout"

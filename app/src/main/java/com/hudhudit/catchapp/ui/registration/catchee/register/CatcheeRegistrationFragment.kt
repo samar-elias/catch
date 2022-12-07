@@ -63,6 +63,7 @@ class CatcheeRegistrationFragment : BaseFragment() {
     }
 
     private fun onClick(){
+        binding.navigateBack.setOnClickListener { findNavController().popBackStack() }
         binding.signUpBtn.setOnClickListener {
             type = "signUp"
             binding.signUpLayout.visibility = View.VISIBLE
@@ -159,6 +160,9 @@ class CatcheeRegistrationFragment : BaseFragment() {
             when {
                 fullName.isEmpty() -> {
                     binding.fullNameEdt.error = resources.getString(R.string.empty_full_name)
+                }
+                !fullName.contains(" ") -> {
+                    binding.fullNameEdt.error = resources.getString(R.string.white_space)
                 }
                 phoneNumber.isEmpty() -> {
                     binding.phoneEdt.error = resources.getString(R.string.empty_phone_number)

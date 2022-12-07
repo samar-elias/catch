@@ -50,8 +50,18 @@ class CatcherHistoryFragment : BaseFragment() {
         onClick()
         getHistoryData()
         getOrdersHistory()
-        binding.hiUser.text = resources.getString(R.string.hi)+ " "+ AppConstants.catcherUser.results.name
+        setData()
 
+    }
+
+    private fun setData(){
+        if (AppConstants.catcherUser.results.name.contains(" ")) {
+            val firstName = AppConstants.catcherUser.results.name.subSequence(
+                0,
+                AppConstants.catcherUser.results.name.indexOf(" ")
+            )
+            binding.hiUser.text = resources.getString(R.string.hi)+ " "+ firstName+"!"
+        }
     }
 
     private fun onClick(){

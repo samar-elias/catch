@@ -59,6 +59,8 @@
     <string name="catch_time_date">Catch Time &amp; Date:</string>
     <string name="you_didn_t_grab_any_catches_yet">You didn\'t grab any catches yet!</string>
     <string name="no_notifications_to_show_yet">No notifications to show yet!</string>
+    <string name="white_space">Please enter your first and last name!</string>
+    <string name="coming_soon">Coming Soon!</string>
 
 
 </resources>
