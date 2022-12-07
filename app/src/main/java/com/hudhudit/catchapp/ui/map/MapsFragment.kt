@@ -146,13 +146,6 @@ class MapsFragment : BaseFragment() {
         return Radius * c
     }
 
-
-
-
-
-
-
-
     private fun onClick(){
         binding.notifications.setOnClickListener {
             if(AppConstants.userType == "0"){
@@ -170,7 +163,6 @@ class MapsFragment : BaseFragment() {
         }
         binding.logout.setOnClickListener { logoutPopUp() }
     }
-
 
     private fun fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
@@ -241,6 +233,7 @@ class MapsFragment : BaseFragment() {
 
 
     }
+
     private fun getAllDriver(){
         viewModel.getDriver()
 
@@ -263,6 +256,7 @@ class MapsFragment : BaseFragment() {
             viewModel.reset()
         })
     }
+
     fun addProviderToMarker(
         driverModel: DriverModel?
     ) {
@@ -318,15 +312,12 @@ class MapsFragment : BaseFragment() {
 
     )
 
-
-
     private fun removeAllMarkers() {
         for (mLocationMarker in googleMapMarkers) {
             mLocationMarker.marker.remove()
         }
         googleMapMarkers.clear()
     }
-
 
     private fun logoutPopUp(){
         val alertView: View =
