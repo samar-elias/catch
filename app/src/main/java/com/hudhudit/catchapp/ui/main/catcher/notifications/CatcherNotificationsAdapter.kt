@@ -1,4 +1,4 @@
-package com.hudhudit.catchapp.ui.main.catchee.notifications
+package com.hudhudit.catchapp.ui.main.catcher.notifications
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.hudhudit.catchapp.R
-import com.hudhudit.catchapp.apputils.modules.catchee.notifications.CatcheeNotification
+import com.hudhudit.catchapp.apputils.modules.catcher.notifications.CatcherNotification
 
-class CatcheeNotificationsAdapter(
-    private var notificationsFragment: CatcheeNotificationsFragment,
-    private var notifications: MutableList<CatcheeNotification>
+class CatcherNotificationsAdapter(
+    private var notificationsFragment: CatcherNotificationsFragment,
+    private var notifications: MutableList<CatcherNotification>
 ) :
-    RecyclerView.Adapter<CatcheeNotificationsAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CatcherNotificationsAdapter.ViewHolder>() {
     var context: Context? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
