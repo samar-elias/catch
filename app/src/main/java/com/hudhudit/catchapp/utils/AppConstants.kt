@@ -14,6 +14,10 @@ class AppConstants {
     companion object{
         const val defaultLanguageKey:String ="DEFAULT_LANGUAGE"
         const val isLoggedInKey:String ="isLoggedInKey"
+        const val SHARED_PREF_KEY = "SHARED_PREF"
+        const val USER_KEY = "User"
+        const val TYPE_KEY = "Type"
+        const val ID_KEY = "Id"
         const val BaseUrl = "http://driver.hudhudclient.com/Api/"
         const val USER="Users"
 
