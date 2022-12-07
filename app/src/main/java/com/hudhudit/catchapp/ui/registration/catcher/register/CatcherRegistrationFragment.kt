@@ -193,7 +193,7 @@ class CatcherRegistrationFragment : BaseFragment() {
                         findNavController().navigate(CatcherRegistrationFragmentDirections.actionCatcherRegistrationFragmentToCatcherVerificationFragment(type))
                     }else if (type == "signIn"){
                         Toast.makeText(registrationActivity, it.data!!.status.massage, Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(requireContext(),MainActivity::class.java))
+                       // startActivity(Intent(requireContext(),MainActivity::class.java))
                     }
                 }
                 Resource.Status.ERROR -> {

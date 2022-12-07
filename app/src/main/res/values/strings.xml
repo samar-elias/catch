@@ -48,6 +48,19 @@
     <string name="choose">Choose</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="finish_trip">Finish Trip</string>
+    <string name="you_catch_is_done">You Catch is Done!</string>
+    <string name="with_your_catchee">With your catchee</string>
+    <string name="you_have_successful_reached_your_destination">You have successful reached your destination</string>
+    <string name="start_trip">Start Trip</string>
+    <string name="exit_your_account">Exit your account</string>
+    <string name="account">account?</string>
+    <string name="are_you_sure_you_want_to_log_out_from_your">Are you sure you want to log out from your</string>
+    <string name="yes_log_out">Yes,log out</string>
+    <string name="no_stay_in">No,Stay in</string>
+    <string name="affordable_catches">Affordable Catches</string>
+    <string name="luxury_catches">Luxury Catches</string>
+    <string name="coming_soon">Coming Soon!</string>
 
 
 </resources>
