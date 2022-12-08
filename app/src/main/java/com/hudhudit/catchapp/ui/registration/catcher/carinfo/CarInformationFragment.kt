@@ -71,6 +71,12 @@ class CarInformationFragment : BaseFragment() {
     var longitude = ""
     var token = ""
 
+    companion object{
+        var frontImg: Bitmap? = null
+        var backImg: Bitmap? = null
+        var isFront = false
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -413,11 +419,5 @@ class CarInformationFragment : BaseFragment() {
             binding.backCarIdLayout.visibility = View.GONE
             backImage = convertToBase64(backImg!!)!!
         }
-    }
-    
-    companion object{
-        var frontImg: Bitmap? = null
-        var backImg: Bitmap? = null
-        var isFront = false
     }
 }
