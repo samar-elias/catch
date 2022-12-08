@@ -26,7 +26,10 @@ class AppConstants {
         lateinit var signIn: UserSignIn
         lateinit var catcheeUser: CatcheeUserResponse
         lateinit var catcherUser: CatcherUserResponse
+        var frontImg: Bitmap? = null
+        var backImg: Bitmap? = null
         var userType = ""
+        var isFront = false
 
         fun convertToBase64(bitmap: Bitmap): String? {
             val byteArrayOutputStream = ByteArrayOutputStream()

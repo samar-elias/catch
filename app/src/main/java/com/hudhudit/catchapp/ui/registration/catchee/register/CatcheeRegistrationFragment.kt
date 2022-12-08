@@ -63,6 +63,7 @@ class CatcheeRegistrationFragment : BaseFragment() {
     }
 
     private fun onClick(){
+        binding.background.setOnClickListener { registrationActivity.hideKeyboard() }
         binding.navigateBack.setOnClickListener { findNavController().popBackStack() }
         binding.signUpBtn.setOnClickListener {
             type = "signUp"

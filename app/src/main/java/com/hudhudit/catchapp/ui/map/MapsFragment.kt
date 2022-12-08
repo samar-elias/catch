@@ -83,28 +83,28 @@ class MapsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireContext());
-
-
-        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-
-       fetchLocation()
-
-        var locations= mutableListOf<LatLng>()
-        locations.add(LatLng(31.969313097394057, 35.86470320252633))
-        locations.add(LatLng(23.54879797, 23.54879797))
-        locations.add(LatLng(31.968368301663176, 35.86537712663036))
-
-
-      locations.forEach {
-         var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
-          //println(x.toString())
-      }
-        binding.btnStart.onClick {
-
-            getAllDriver()
-        }
+//        fusedLocationProviderClient =
+//            LocationServices.getFusedLocationProviderClient(requireContext());
+//
+//
+//        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+//
+//       fetchLocation()
+//
+//        var locations= mutableListOf<LatLng>()
+//        locations.add(LatLng(31.969313097394057, 35.86470320252633))
+//        locations.add(LatLng(23.54879797, 23.54879797))
+//        locations.add(LatLng(31.968368301663176, 35.86537712663036))
+//
+//
+//      locations.forEach {
+//         var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
+//          //println(x.toString())
+//      }
+//        binding.btnStart.onClick {
+//
+//            getAllDriver()
+//        }
         onClick()
     }
 
@@ -146,13 +146,6 @@ class MapsFragment : BaseFragment() {
         return Radius * c
     }
 
-
-
-
-
-
-
-
     private fun onClick(){
         binding.notifications.setOnClickListener {
             if(AppConstants.userType == "0"){
@@ -170,7 +163,6 @@ class MapsFragment : BaseFragment() {
         }
         binding.logout.setOnClickListener { logoutPopUp() }
     }
-
 
     private fun fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
@@ -241,6 +233,7 @@ class MapsFragment : BaseFragment() {
 
 
     }
+
     private fun getAllDriver(){
         viewModel.getDriver()
 
@@ -263,6 +256,7 @@ class MapsFragment : BaseFragment() {
             viewModel.reset()
         })
     }
+
     fun addProviderToMarker(
         driverModel: DriverModel?
     ) {
@@ -318,15 +312,12 @@ class MapsFragment : BaseFragment() {
 
     )
 
-
-
     private fun removeAllMarkers() {
         for (mLocationMarker in googleMapMarkers) {
             mLocationMarker.marker.remove()
         }
         googleMapMarkers.clear()
     }
-
 
     private fun logoutPopUp(){
         val alertView: View =

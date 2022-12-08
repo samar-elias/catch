@@ -61,6 +61,8 @@ class CatcherHistoryFragment : BaseFragment() {
                 AppConstants.catcherUser.results.name.indexOf(" ")
             )
             binding.hiUser.text = resources.getString(R.string.hi)+ " "+ firstName+"!"
+        }else{
+            binding.hiUser.text = resources.getString(R.string.hi)+ " "+ AppConstants.catcherUser.results.name+"!"
         }
     }
 

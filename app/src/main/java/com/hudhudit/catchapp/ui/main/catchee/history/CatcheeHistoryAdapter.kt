@@ -33,6 +33,7 @@ class CatcheeHistoryAdapter(
         val order = orders[position]
 
         holder.catcherName.text = order.driver_name
+        holder.nameTitle.text = context!!.resources.getString(R.string.catcher_name)
         holder.catchDateTime.text = order.date+", "+order.time
         if (order.total_price.isEmpty()){
             holder.catchFeesLayout.visibility = View.GONE
@@ -49,6 +50,7 @@ class CatcheeHistoryAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var catcherName: TextView = itemView.findViewById(R.id.catcher_name)
+        var nameTitle: TextView = itemView.findViewById(R.id.name_title)
         var catchFees: TextView = itemView.findViewById(R.id.catch_fees)
         var catchDateTime: TextView = itemView.findViewById(R.id.catch_time_date)
         var catchFeesLayout: LinearLayoutCompat = itemView.findViewById(R.id.catch_fees_layout)
