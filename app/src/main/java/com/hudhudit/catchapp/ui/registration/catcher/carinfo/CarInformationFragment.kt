@@ -43,6 +43,7 @@ import com.hudhudit.catchapp.databinding.FragmentCarInformationBinding
 import com.hudhudit.catchapp.ui.main.MainActivity
 import com.hudhudit.catchapp.ui.registration.RegistrationActivity
 import com.hudhudit.catchapp.utils.AppConstants
+import com.hudhudit.catchapp.utils.AppConstants.Companion.convertToBase64
 import com.hudhudit.catchapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.InputStream
@@ -69,7 +70,6 @@ class CarInformationFragment : BaseFragment() {
     var latitude = ""
     var longitude = ""
     var token = ""
-    private var isFront = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -374,13 +374,15 @@ class CarInformationFragment : BaseFragment() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             if (isFront){
-                binding.frontCarId.setImageBitmap(imageBitmap)
+                frontImg = imageBitmap
+                binding.frontCarId.setImageBitmap(frontImg)
                 binding.frontCarIdLayout.visibility = View.GONE
-                frontImage = AppConstants.convertToBase64(imageBitmap)!!
+                frontImage = convertToBase64(frontImg!!)!!
             }else{
-                binding.backCarId.setImageBitmap(imageBitmap)
+                backImg = imageBitmap
+                binding.backCarId.setImageBitmap(backImg)
                 binding.backCarIdLayout.visibility = View.GONE
-                backImage = AppConstants.convertToBase64(imageBitmap)!!
+                backImage = convertToBase64(backImg!!)!!
             }
         }else if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK){
             val inputStream: InputStream = requireContext().contentResolver.openInputStream(data!!.data!!)!!
@@ -388,14 +390,34 @@ class CarInformationFragment : BaseFragment() {
             if (isFront){
                 binding.frontCarId.setImageBitmap(imageBitmap)
                 binding.frontCarIdLayout.visibility = View.GONE
-                frontImage = AppConstants.convertToBase64(imageBitmap)!!
+                frontImage = convertToBase64(imageBitmap)!!
             }else{
                 binding.backCarId.setImageBitmap(imageBitmap)
                 binding.backCarIdLayout.visibility = View.GONE
-                backImage = AppConstants.convertToBase64(imageBitmap)!!
+                backImage = convertToBase64(imageBitmap)!!
             }
         }else if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             dispatchTakePictureIntent()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (frontImg != null){
+            binding.frontCarId.setImageBitmap(frontImg)
+            binding.frontCarIdLayout.visibility = View.GONE
+            frontImage = convertToBase64(frontImg!!)!!
+        }
+        if (backImg != null){
+            binding.backCarId.setImageBitmap(backImg)
+            binding.backCarIdLayout.visibility = View.GONE
+            backImage = convertToBase64(backImg!!)!!
+        }
+    }
+    
+    companion object{
+        var frontImg: Bitmap? = null
+        var backImg: Bitmap? = null
+        var isFront = false
     }
 }
