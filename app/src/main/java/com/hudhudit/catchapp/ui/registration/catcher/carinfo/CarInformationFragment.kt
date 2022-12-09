@@ -6,7 +6,6 @@ import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -14,7 +13,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,6 +34,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.hudhudit.catchapp.R
+import com.hudhudit.catchapp.apputils.modules.driver.adddrive.DriverUserModel
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarBrand
 import com.hudhudit.catchapp.apputils.modules.registration.catcherregistration.CarModel
 import com.hudhudit.catchapp.core.base.BaseFragment
@@ -70,7 +69,7 @@ class CarInformationFragment : BaseFragment() {
     var longitude = ""
     var token = ""
     private var isFront = false
-
+    var driverUserModel:DriverUserModel? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -292,6 +291,7 @@ class CarInformationFragment : BaseFragment() {
                     binding.progressBar.visibility = View.GONE
                     AppConstants.userType = "1"
                     AppConstants.catcherUser = it.data!!
+
                     saveUserToSharedPreferences()
                 }
                 Resource.Status.ERROR -> {
@@ -351,6 +351,7 @@ class CarInformationFragment : BaseFragment() {
         editor.putString(AppConstants.USER_KEY, json)
         editor.putString(AppConstants.TYPE_KEY, "1")
         editor.apply()
+        addNewDriver()
         val intent = Intent(registrationActivity, MainActivity:: class.java)
         startActivity(intent)
         registrationActivity.finish()
@@ -397,5 +398,29 @@ class CarInformationFragment : BaseFragment() {
         }else if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             dispatchTakePictureIntent()
         }
+    }
+    fun addNewDriver() {
+        var userloginId: String = (AppConstants.catcheeUser.results!!.id).toString()
+
+        viewModel.addDriver(
+            DriverUserModel(
+                driverUserModel?.id ?: "",
+                userloginId,
+                "0","false"
+            )
+        )
+        viewModel.addDriverStatus.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if (it.status == Resource.Status.SUCCESS) {
+                driverUserModel = it.data!!.first
+                Toast.makeText(requireContext(), it.data!!.second, Toast.LENGTH_SHORT).show()
+
+
+
+            }
+            if (it.status == Resource.Status.ERROR) {
+                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
+            }
+        })
     }
 }

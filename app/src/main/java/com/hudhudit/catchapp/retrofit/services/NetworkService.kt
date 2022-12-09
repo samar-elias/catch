@@ -66,7 +66,7 @@ interface NetworkService {
     @POST("cancel_client_orders")
     suspend fun cancelClientOrders(@Header("Authorization")token: String,@Body orderRequest: OrderRequest): Response<BooleanResponse>
     @POST("create_orders")
-    suspend fun createOrders(@Header("Authorization")token: String,@Body creatOrderRequest: CreatOrderRequest): Response<GetDriverResponse>
+    suspend fun createOrders(@Header("Authorization")token: String,@Body creatOrderRequest: CreatOrderRequest): Response<BooleanResponse>
     //Driver
     @POST("get_all_driver")
     suspend fun getAllDriver(@Body getDriverRequest: GetDriverRequest): Response<GetDriverResponse>

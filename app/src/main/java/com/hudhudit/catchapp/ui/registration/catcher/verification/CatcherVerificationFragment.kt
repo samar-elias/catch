@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ import com.google.firebase.auth.*
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.hudhudit.catchapp.R
+import com.hudhudit.catchapp.apputils.modules.driver.adddrive.DriverUserModel
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcherVerificationBinding
 import com.hudhudit.catchapp.ui.main.MainActivity
@@ -42,7 +42,9 @@ class CatcherVerificationFragment : BaseFragment() {
     var token = ""
     lateinit var mAuth: FirebaseAuth
     lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-
+    var driverUserModel:DriverUserModel? = null
+    private var lat:Double=31.969313097394057
+    private var lng:Double=35.86470320252633
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -171,6 +173,7 @@ class CatcherVerificationFragment : BaseFragment() {
                     binding.progressBar.visibility = View.GONE
                     AppConstants.userType = "1"
                     AppConstants.catcherUser = it.data!!
+
                     saveUserToSharedPreferences()
                 }
                 Resource.Status.ERROR -> {
@@ -192,9 +195,36 @@ class CatcherVerificationFragment : BaseFragment() {
         editor.putString(AppConstants.USER_KEY, json)
         editor.putString(AppConstants.TYPE_KEY, "1")
         editor.apply()
+        addNewDriver()
         val intent = Intent(registrationActivity, MainActivity:: class.java)
         startActivity(intent)
         registrationActivity.finish()
+    }
+    fun addNewDriver() {
+        var userloginId: String = (AppConstants.catcherUser.results!!.id).toString()
+
+        viewModel.addDriver(
+            DriverUserModel(
+                driverUserModel?.id ?: "" ,
+                userloginId,
+                "0",
+                "false",
+                "$lat",
+                "$lng"
+            )
+        )
+        viewModel.addDriverStatus.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if (it.status == Resource.Status.SUCCESS) {
+                Toast.makeText(requireContext(), it.data!!.second, Toast.LENGTH_SHORT).show()
+                driverUserModel = it.data!!.first
+
+
+            }
+            if (it.status == Resource.Status.ERROR) {
+                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
+            }
+        })
     }
 
 }

@@ -1,4 +1,4 @@
-package com.hudhudit.artook.apputils.remote.di
+package com.hudhudit.catchapp.retrofit.di
 
 
 import com.google.firebase.database.FirebaseDatabase

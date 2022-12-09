@@ -18,6 +18,7 @@ import com.google.firebase.auth.*
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.hudhudit.catchapp.R
+import com.hudhudit.catchapp.apputils.modules.driver.adddrive.DriverUserModel
 import com.hudhudit.catchapp.core.base.BaseFragment
 import com.hudhudit.catchapp.databinding.FragmentCatcheeVerificationBinding
 import com.hudhudit.catchapp.ui.introduction.IntroductionActivity
@@ -192,6 +193,7 @@ class CatcheeVerificationFragment : BaseFragment() {
                     AppConstants.userType = "0"
                     AppConstants.catcheeUser = it.data!!
                     saveUserToSharedPreferences()
+
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
@@ -216,4 +218,6 @@ class CatcheeVerificationFragment : BaseFragment() {
         startActivity(intent)
         registrationActivity.finish()
     }
+
+
 }
