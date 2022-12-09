@@ -75,6 +75,9 @@
     <string name="exit_your_account">Exit your account</string>
     <string name="are_you_sure_you_want_to_log_out_from_your_account">Are you sure you want to log out from your account?</string>
     <string name="catchee_name">Catchee Name:</string>
+    <string name="your_account_is_pending_to_approve">Your account is Pending to approve</string>
+    <string name="change_to_busy">Change to busy</string>
+    <string name="change_to_available">Change to Available</string>
 
 
 </resources>

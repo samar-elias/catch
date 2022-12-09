@@ -19,8 +19,8 @@ class AppConstants {
         const val TYPE_KEY = "Type"
         const val ID_KEY = "Id"
         const val BaseUrl = "http://driver.hudhudclient.com/Api/"
-        const val USER="Users"
-
+        const val DRIVER="Driver"
+        const val REQUESTUser="RequestOrder"
         lateinit var catcheeSignUp: CatcheeUserSignUp
         lateinit var catcherSignUp: CatcherUserSignUp
         lateinit var signIn: UserSignIn
