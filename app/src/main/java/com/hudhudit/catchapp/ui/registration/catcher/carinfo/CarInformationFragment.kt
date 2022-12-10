@@ -68,7 +68,6 @@ class CarInformationFragment : BaseFragment() {
     var latitude = ""
     var longitude = ""
     var token = ""
-    private var isFront = false
     var driverUserModel:DriverUserModel? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -375,13 +374,15 @@ class CarInformationFragment : BaseFragment() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             if (isFront){
-                binding.frontCarId.setImageBitmap(imageBitmap)
+                frontImg = imageBitmap
+                binding.frontCarId.setImageBitmap(frontImg)
                 binding.frontCarIdLayout.visibility = View.GONE
-                frontImage = AppConstants.convertToBase64(imageBitmap)!!
+                frontImage = AppConstants.convertToBase64(frontImg!!)!!
             }else{
-                binding.backCarId.setImageBitmap(imageBitmap)
+                backImg = imageBitmap
+                binding.backCarId.setImageBitmap(backImg)
                 binding.backCarIdLayout.visibility = View.GONE
-                backImage = AppConstants.convertToBase64(imageBitmap)!!
+                backImage = AppConstants.convertToBase64(backImg!!)!!
             }
         }else if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK){
             val inputStream: InputStream = requireContext().contentResolver.openInputStream(data!!.data!!)!!
@@ -399,6 +400,27 @@ class CarInformationFragment : BaseFragment() {
             dispatchTakePictureIntent()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (frontImg != null){
+            binding.frontCarId.setImageBitmap(frontImg)
+            binding.frontCarIdLayout.visibility = View.GONE
+            frontImage = AppConstants.convertToBase64(frontImg!!)!!
+        }
+        if (backImg != null){
+            binding.backCarId.setImageBitmap(backImg)
+            binding.backCarIdLayout.visibility = View.GONE
+            backImage = AppConstants.convertToBase64(backImg!!)!!
+        }
+    }
+
+    companion object{
+        var frontImg: Bitmap? = null
+        var backImg: Bitmap? = null
+        var isFront = false
+    }
+
     fun addNewDriver() {
         var userloginId: String = (AppConstants.catcheeUser.results!!.id).toString()
 
