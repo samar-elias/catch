@@ -94,7 +94,7 @@ class MapsFragment : BaseFragment() {
 
         mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
 
-       fetchLocation()
+        fetchLocation()
         getAllRequest()
 
         var locations= mutableListOf<LatLng>()
@@ -103,10 +103,10 @@ class MapsFragment : BaseFragment() {
         locations.add(LatLng(31.968368301663176, 35.86537712663036))
 
 
-      locations.forEach {
-         var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
-          //println(x.toString())
-      }
+        locations.forEach {
+            var x= CalculationByDistance(LatLng(lat,lng), LatLng(it.latitude,it.longitude))
+            //println(x.toString())
+        }
 
 
 
@@ -136,25 +136,25 @@ class MapsFragment : BaseFragment() {
 
     fun cancelOrderRequest(){
 
-            viewModel.deleteOrderRequest(requestId)
-            viewModel.deleteOrderStatus.observe(viewLifecycleOwner, Observer {
-                if (it != null) {
-                    if (it.status == Resource.Status.SUCCESS) {
-                           Toast.makeText(requireContext(), it.data.toString(), Toast.LENGTH_SHORT).show()
-                        binding.cardCancel.visibility=View.GONE
-                        binding.btnStart.isEnabled=true
-                        binding.btnStart.setImageResource(R.drawable.ic_enable_start)
+        viewModel.deleteOrderRequest(requestId)
+        viewModel.deleteOrderStatus.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS) {
+                    Toast.makeText(requireContext(), it.data.toString(), Toast.LENGTH_SHORT).show()
+                    binding.cardCancel.visibility=View.GONE
+                    binding.btnStart.isEnabled=true
+                    binding.btnStart.setImageResource(R.drawable.ic_enable_start)
 
 
-                    }
-                    if (it.status == Resource.Status.ERROR) {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-
-                    }
                 }
-             //   viewModel.resetCount()
+                if (it.status == Resource.Status.ERROR) {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
-            })
+                }
+            }
+            //   viewModel.resetCount()
+
+        })
 
     }
     fun creatNewOrder(){
@@ -346,7 +346,7 @@ class MapsFragment : BaseFragment() {
                 lng=currentLocation!!.longitude
                 Log.d("mylocation", "lat"+currentLocation!!.latitude.toString() + "lng"+currentLocation!!.longitude.toString())
 
-                 removeAllMarkers()
+                removeAllMarkers()
                 val callback = OnMapReadyCallback { googleMap ->
                     val latLng = LatLng( currentLocation!!.latitude,
                         currentLocation!!.longitude)
@@ -462,7 +462,7 @@ class MapsFragment : BaseFragment() {
 
                     if (AppConstants.userType == "0"){
 
-                      var x= result.filter {it1->it1.userId == AppConstants.catcheeUser.results.id}.firstOrNull()
+                        var x= result.filter {it1->it1.userId == AppConstants.catcheeUser.results.id}.firstOrNull()
                         if (x != null){
                             binding.linearLayoutCompat2.visibility=View.GONE
                             binding.linearLayoutCompat.visibility=View.VISIBLE
@@ -472,9 +472,8 @@ class MapsFragment : BaseFragment() {
                             requestId= x.id.toString()
                             if (x.statusOrder == "5"){
                                 endTripPopUp()
-                            }else if (x.statusOrder == "3"){
-                                binding.cardCancel.visibility=View.GONE
                             }
+
                         }
 
 
@@ -520,7 +519,7 @@ class MapsFragment : BaseFragment() {
                             MarkerOptions()
                                 .position(sydney)
                                 .title("user_name")
-                        .icon(BitmapDescriptorFactory.fromBitmap(resource))
+                                .icon(BitmapDescriptorFactory.fromBitmap(resource))
 
                         var markerModel = googleMap.addMarker(markerOptions).let {
                             GoogleMapMarkerModel(
@@ -756,7 +755,7 @@ class MapsFragment : BaseFragment() {
 
                 }
             }
-              viewModel.updateAvailableReset()
+            viewModel.updateAvailableReset()
 
         })
 
