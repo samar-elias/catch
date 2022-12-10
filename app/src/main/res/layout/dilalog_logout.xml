@@ -17,6 +17,7 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_exist"
         android:gravity="center"
         android:textColor="@color/black"
         android:text="@string/exit_your_account"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/cairo_bold"/>
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_dec"
         android:layout_marginTop="@dimen/_16sdp"
         android:gravity="center"
         android:textColor="@color/gray"
@@ -34,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_dec2"
             android:layout_marginTop="@dimen/_8sdp"
             android:gravity="center"
             android:textColor="@color/gray"
@@ -58,6 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" >
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_yes"
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/_10sdp"
                 android:padding="@dimen/_8sdp"
@@ -87,6 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" >
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_no"
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/_10sdp"
                 android:padding="@dimen/_8sdp"
