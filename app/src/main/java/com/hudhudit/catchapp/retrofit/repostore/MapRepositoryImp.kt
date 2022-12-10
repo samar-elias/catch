@@ -150,6 +150,30 @@ class MapRepositoryImp(
 
     }
 
+    override suspend fun updateOrderStatus(
+        status:String,
+        chacherUserRequest: ChacherUserRequest,
+        result: (Resource<Pair<ChacherUserRequest, String>>) -> Unit
+    ) {
+        val map = HashMap<String, Any>()
+
+        map["statusOrder"] = status
+
+        database.getReference(REQUESTUser).child(chacherUserRequest.id!!).updateChildren(map).addOnSuccessListener {
+            result.invoke(
+                Resource.success(Pair(chacherUserRequest, "update successfully"))
+            )
+
+        }.addOnFailureListener {
+            result.invoke(
+                Resource.error(
+                    it.localizedMessage
+                )
+            )
+        }
+
+    }
+
     override suspend fun updateDriverAvailable(
         driverUserModel: DriverUserModel,
         result: (Resource<Pair<DriverUserModel, String>>) -> Unit

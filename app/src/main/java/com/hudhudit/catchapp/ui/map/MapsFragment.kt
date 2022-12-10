@@ -18,8 +18,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -68,6 +71,8 @@ class MapsFragment : BaseFragment() {
     var driverUserModel: MutableList<DriverUserModel>?=null
     var allchacherUserRequest: MutableList<ChacherUserRequest>?=null
     var myDriver:DriverUserModel?=null
+    var requestId=""
+    var carType="1" //1 taxi 2 privit
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -131,7 +136,7 @@ class MapsFragment : BaseFragment() {
 
     fun cancelOrderRequest(){
 
-            viewModel.deleteOrderRequest("-NIrYWG7nYgMG851Vimj")
+            viewModel.deleteOrderRequest(requestId)
             viewModel.deleteOrderStatus.observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     if (it.status == Resource.Status.SUCCESS) {
@@ -193,13 +198,16 @@ class MapsFragment : BaseFragment() {
                 chacherUserRequest?.id ?: "",
                 userloginId,
                 "0","$lat",
-                "$lng"
+                "$lng",
+                carType
+
             )
         )
         viewModel.addOrderStatus.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if (it.status == Resource.Status.SUCCESS) {
                 Toast.makeText(requireContext(), it.data!!.second, Toast.LENGTH_SHORT).show()
                 chacherUserRequest = it.data!!.first
+                requestId= it.data!!.first.id.toString()
                 binding.linearLayoutCompat2.visibility=View.GONE
                 binding.linearLayoutCompat.visibility=View.VISIBLE
                 binding.btnStart.isEnabled=false
@@ -269,7 +277,28 @@ class MapsFragment : BaseFragment() {
         }
         binding.closeService.setOnClickListener { logoutPopUp() }
         binding.cardCancel.onClick {
-            cancelOrderRequestApi()
+            cancelPopUp()
+
+        }
+        binding.cardTaxi.onClick {
+            carType="1"
+            binding.cardTaxi.setBackgroundResource(R.drawable.round_box_red)
+            binding.cardPriviteCar.setBackgroundResource(R.drawable.round_box_whit)
+            binding.tvTaxi.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.white))
+            binding.tvAffordable.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.white))
+            binding.tvPrivit.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.black))
+            binding.tvLuxury.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.black))
+
+        }
+        binding.cardPriviteCar.onClick {
+            carType="2"
+            binding.cardTaxi.setBackgroundResource(R.drawable.round_box_whit)
+            binding.cardPriviteCar.setBackgroundResource(R.drawable.round_box_red)
+            binding.tvTaxi.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.black))
+            binding.tvAffordable.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.black))
+            binding.tvPrivit.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.white))
+            binding.tvLuxury.setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.white))
+
         }
         binding.btnStart.onClick {
             if (AppConstants.userType == "0"){
@@ -282,6 +311,14 @@ class MapsFragment : BaseFragment() {
             }
 
 
+        }
+        binding.cardStarttrip.onClick {
+            binding.cardStarttrip.visibility=View.GONE
+            binding.cardFinshtrip.visibility=View.VISIBLE
+
+        }
+        binding.cardFinshtrip.onClick {
+            endTripPopUp()
         }
     }
 
@@ -371,6 +408,9 @@ class MapsFragment : BaseFragment() {
 
                     }else if (AppConstants.userType == "1"){
                         myDriver=driverUserModel!!.filter { it.driverId == AppConstants.catcherUser.results.id }.firstOrNull()!!
+                        if (myDriver!!.statusOrder == "2"){
+                            endTripPopUp()
+                        }
 
                         if (myDriver!!.avsilable == "true"){
                             binding.btnStart.setImageResource(R.drawable.ic_off_enable)
@@ -415,6 +455,11 @@ class MapsFragment : BaseFragment() {
                 if (it!!.status == Resource.Status.SUCCESS) {
                     var result=it.data!!.toMutableList()
                     allchacherUserRequest=result
+                    var x= result.firstOrNull { it.statusOrder == "2" }
+                    if (x != null && AppConstants.userType =="1"){
+                        newRequestPopUp(x)
+                    }
+
                     if (AppConstants.userType == "0"){
 
                       var x= result.filter {it1->it1.userId == AppConstants.catcheeUser.results.id}.firstOrNull()
@@ -424,6 +469,12 @@ class MapsFragment : BaseFragment() {
                             binding.btnStart.isEnabled=false
                             binding.btnStart.setImageResource(R.drawable.ic_disable_start)
                             binding.cardCancel.visibility=View.VISIBLE
+                            requestId= x.id.toString()
+                            if (x.statusOrder == "5"){
+                                endTripPopUp()
+                            }else if (x.statusOrder == "3"){
+                                binding.cardCancel.visibility=View.GONE
+                            }
                         }
 
 
@@ -482,11 +533,12 @@ class MapsFragment : BaseFragment() {
                         if (markerModel != null) {
                             googleMapMarkers.add(markerModel)
                         }
-                        if(!allchacherUserRequest.isNullOrEmpty()){
+                        if(!allchacherUserRequest.isNullOrEmpty() && AppConstants.userType == "1"){
                             allchacherUserRequest!!.forEach {
                                 addReuestToMarker(it)
                             }
                         }
+
 
 
                         // googleMapMarkers.removeAt(0)
@@ -593,6 +645,82 @@ class MapsFragment : BaseFragment() {
             requireActivity().finish()
             alertBuilder.dismiss()}
     }
+    @SuppressLint("MissingInflatedId")
+    private fun cancelPopUp(){
+        val alertView: View =
+            LayoutInflater.from(context).inflate(R.layout.dilalog_logout, null)
+        val alertBuilder = AlertDialog.Builder(context).setView(alertView).show()
+        alertBuilder.show()
+        alertBuilder.setCancelable(false)
+
+        alertBuilder.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val cancel: CardView = alertView.findViewById(R.id.cancel)
+        val logout: CardView = alertView.findViewById(R.id.logout)
+        val tv_yes: AppCompatTextView = alertView.findViewById(R.id.tv_yes)
+        val tv_no: AppCompatTextView = alertView.findViewById(R.id.tv_no)
+        val tv_header: AppCompatTextView = alertView.findViewById(R.id.tv_exist)
+        val tv_dec: AppCompatTextView = alertView.findViewById(R.id.tv_dec)
+        val tv_dec2: AppCompatTextView = alertView.findViewById(R.id.tv_dec2)
+        tv_yes.setText(R.string.yES_Cancel_Request)
+        tv_no.setText(R.string.nO_Keep_Request)
+        tv_header.setText(R.string.cancel_request)
+        tv_dec.setText(R.string.are_you_sure_you_want_to_cancel_your_catch)
+        tv_dec2.setText(R.string.request)
+        cancel.setOnClickListener { alertBuilder.dismiss() }
+        logout.setOnClickListener {
+            cancelOrderRequestApi()
+            alertBuilder.dismiss()
+        }
+    }
+    @SuppressLint("MissingInflatedId")
+    private fun endTripPopUp(){
+        val alertView: View =
+            LayoutInflater.from(context).inflate(R.layout.dilalog_finsh_trip, null)
+        val alertBuilder = AlertDialog.Builder(context).setView(alertView).show()
+        alertBuilder.show()
+        alertBuilder.setCancelable(false)
+
+        alertBuilder.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val done: CardView = alertView.findViewById(R.id.card_done)
+
+        done.setOnClickListener {
+            binding.cardFinshtrip.visibility=View.GONE
+            alertBuilder.dismiss() }
+
+    }
+    @SuppressLint("MissingInflatedId")
+    private fun newRequestPopUp( chacherUserRequest: ChacherUserRequest){
+        val alertView: View =
+            LayoutInflater.from(context).inflate(R.layout.dilalog_logout, null)
+        val alertBuilder = AlertDialog.Builder(context).setView(alertView).show()
+        alertBuilder.show()
+        alertBuilder.setCancelable(false)
+
+        alertBuilder.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val cancel: CardView = alertView.findViewById(R.id.cancel)
+        val logout: CardView = alertView.findViewById(R.id.logout)
+        val tv_yes: AppCompatTextView = alertView.findViewById(R.id.tv_yes)
+        val tv_no: AppCompatTextView = alertView.findViewById(R.id.tv_no)
+        val tv_header: AppCompatTextView = alertView.findViewById(R.id.tv_exist)
+        val tv_dec: AppCompatTextView = alertView.findViewById(R.id.tv_dec)
+        val tv_dec2: AppCompatTextView = alertView.findViewById(R.id.tv_dec2)
+        tv_yes.setText(R.string.accept)
+        tv_no.setText(R.string.decline)
+        tv_header.setText(R.string.new_Request)
+        tv_dec.setText(R.string.from)
+        tv_dec2.setText(R.string.would_you_like_to_accept_this_catch_request)
+        cancel.setOnClickListener { alertBuilder.dismiss() }
+        logout.setOnClickListener {
+            updateOrderStatus(chacherUserRequest)
+
+            alertBuilder.dismiss()
+        }
+
+    }
+
     fun updateDriverAvailable(){
 
 
@@ -633,6 +761,30 @@ class MapsFragment : BaseFragment() {
         })
 
     }
+    fun updateOrderStatus(chacherUserRequest: ChacherUserRequest){
 
+
+        viewModel.updateOrder("3",chacherUserRequest)
+        viewModel.updateOrderStatus.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS) {
+
+
+
+                    Toast.makeText(requireContext(), it.data!!.second, Toast.LENGTH_SHORT).show()
+                    binding.cardStarttrip.visibility=View.VISIBLE
+
+
+                }
+                if (it.status == Resource.Status.ERROR) {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
+                }
+            }
+            viewModel.updateAvailableReset()
+
+        })
+
+    }
 
 }

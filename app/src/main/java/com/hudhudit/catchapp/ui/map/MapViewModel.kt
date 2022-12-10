@@ -29,7 +29,7 @@ class MapViewModel  @Inject constructor(
     val cancelClientOrdersApiStatus = MutableLiveData<Resource<BooleanResponse>>()
     val updateAvailableStatus = MutableLiveData<Resource<Pair<DriverUserModel,String>>?>()
     val getAllRequestStatus = MutableLiveData<Resource<MutableList<ChacherUserRequest>>?>()
-
+    val updateOrderStatus = MutableLiveData<Resource<Pair<ChacherUserRequest,String>>?>()
      fun updateDriverAvailable(
 
          driverUserModel: DriverUserModel)
@@ -39,6 +39,15 @@ class MapViewModel  @Inject constructor(
                  updateAvailableStatus.postValue(it)
              }
          }
+    }
+    fun updateOrder(
+        status:String,chacherUserRequest: ChacherUserRequest)
+    {
+        viewModelScope.launch {
+            repository.updateOrderStatus(status,chacherUserRequest) {
+                updateOrderStatus.postValue(it)
+            }
+        }
     }
 
 

@@ -13,6 +13,7 @@ interface MapRepository {
     suspend fun deleteRequest(orderId:String, result: (Resource<String>) -> Unit)
     suspend fun updateDriverAvailable(driverUserModel: DriverUserModel,result: (Resource<Pair<DriverUserModel, String>>) -> Unit)
     suspend fun getAllRequest(result: (Resource<MutableList<ChacherUserRequest>>) -> Unit)
+    suspend fun updateOrderStatus(status:String,chacherUserRequest: ChacherUserRequest, result: (Resource<Pair<ChacherUserRequest, String>>) -> Unit)
 
 
 }

@@ -195,7 +195,7 @@ class CatcherVerificationFragment : BaseFragment() {
         editor.putString(AppConstants.USER_KEY, json)
         editor.putString(AppConstants.TYPE_KEY, "1")
         editor.apply()
-        addNewDriver()
+       // addNewDriver()
         val intent = Intent(registrationActivity, MainActivity:: class.java)
         startActivity(intent)
         registrationActivity.finish()
@@ -210,7 +210,8 @@ class CatcherVerificationFragment : BaseFragment() {
                 "0",
                 "false",
                 "$lat",
-                "$lng"
+                "$lng",
+                AppConstants.catcherUser.results!!.cart_type
             )
         )
         viewModel.addDriverStatus.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
