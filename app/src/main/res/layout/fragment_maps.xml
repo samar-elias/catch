@@ -45,6 +45,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_finshtrip"
         android:visibility="gone"
 
         android:layout_width="wrap_content"
@@ -67,10 +68,12 @@
             android:drawablePadding="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_sharp_flag_24"
             android:text="@string/finish_trip"
+            android:gravity="center"
             android:layout_gravity="center"
             android:layout_height="wrap_content"/>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_starttrip"
         android:visibility="gone"
 
         android:layout_width="wrap_content"
@@ -262,6 +265,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_affordable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_9sdp"
@@ -281,11 +285,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/card_privite_car"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_weight="1"
-                android:alpha="0.3"
                 android:background="@drawable/round_box_whit">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -300,7 +304,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/appCompatTextView"
+
+                    android:id="@+id/tv_luxury"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/_9sdp"
                     android:layout_height="wrap_content"
@@ -322,13 +327,14 @@
                     app:cardCornerRadius="@dimen/_20sdp"
                     app:cardElevation="0.3dp"
                     app:layout_constraintEnd_toEndOf="@+id/appCompatImageView3"
-                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView">
+                    app:layout_constraintStart_toStartOf="@+id/tv_luxury"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_luxury">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:visibility="gone"
                         android:padding="@dimen/_5sdp"
                         android:text="@string/coming_soon"
                         android:textColor="@color/light_gray"
@@ -340,7 +346,7 @@
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_margin="@dimen/_8sdp"
-                    android:src="@drawable/taxi"
+                    android:src="@drawable/ic_privite_car"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

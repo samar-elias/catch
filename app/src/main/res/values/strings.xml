@@ -78,6 +78,16 @@
     <string name="your_account_is_pending_to_approve">Your account is Pending to approve</string>
     <string name="change_to_busy">Change to busy</string>
     <string name="change_to_available">Change to Available</string>
+    <string name="cancel_request">Cancel Request</string>
+    <string name="are_you_sure_you_want_to_cancel_your_catch">Are you sure you want to cancel your catch</string>
+    <string name="request">request?</string>
+    <string name="yES_Cancel_Request">YES, Cancel Request</string>
+    <string name="nO_Keep_Request">NO, Keep Request</string>
+    <string name="new_Request">New Request</string>
+    <string name="from">From:</string>
+    <string name="would_you_like_to_accept_this_catch_request">Would you like to accept this catch request?</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
 
 
 </resources>
